@@ -37,5 +37,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 The app:
 
-![](https://drive.google.com/file/d/1NGjlz_M8ALAmFTT16vCWSv3NsB4W2MhM/view?usp=sharing)
+![kanban](https://drive.google.com/file/d/1NGjlz_M8ALAmFTT16vCWSv3NsB4W2MhM/view?usp=sharing)
 
