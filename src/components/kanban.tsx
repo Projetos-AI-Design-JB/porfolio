@@ -6,8 +6,9 @@ import React, {
   useState,
   DragEvent,
   FormEvent,
+  useEffect,
 } from "react";
-import { FiPlus, FiTrash, FiEdit } from "react-icons/fi";
+import { FiPlus, FiTrash, FiEdit, FiCopy } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { FaFire } from "react-icons/fa";
 import { cn } from "@/lib/utils";
@@ -29,6 +30,34 @@ const KanbanApp = () => {
   const [activeBoardId, setActiveBoardId] = useState<string | null>(
     boards.length > 0 ? boards[0].id : null
   );
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    // Migrate cards from "todo" to "to do"
+    const needsColumnMigration = boards.some((b) => b.cards.some((c) => c.column === ("todo" as any)));
+    const needsDateMigration = boards.some((b) => b.cards.some((c) => !c.createdAt));
+
+    if (needsColumnMigration || needsDateMigration) {
+      const migratedBoards = boards.map((board) => ({
+        ...board,
+        cards: board.cards.map((card) => {
+          let updatedCard = { ...card };
+          if (updatedCard.column === ("todo" as any)) {
+            updatedCard.column = "to do";
+          }
+          if (!updatedCard.createdAt) {
+            updatedCard.createdAt = new Date().toISOString();
+          }
+          return updatedCard;
+        }),
+      }));
+      setBoards(migratedBoards);
+    }
+  }, [boards, setBoards]);
 
   const activeBoard = boards.find((board) => board.id === activeBoardId);
 
@@ -70,6 +99,40 @@ const KanbanApp = () => {
     setCardsForActiveBoard(newCards);
   };
 
+  const handleCopyCard = (cardId: string) => {
+    if (!activeBoard) return;
+
+    const cardToCopy = activeBoard.cards.find((c) => c.id === cardId);
+    if (!cardToCopy) return;
+
+    const newCard: CardType = {
+      ...cardToCopy,
+      id: Math.random().toString(),
+      title: cardToCopy.title + " (Copy)",
+      createdAt: new Date().toISOString(),
+    };
+
+    const originalCardIndex = activeBoard.cards.findIndex(
+      (c) => c.id === cardId
+    );
+
+    const newCards = [...activeBoard.cards];
+    newCards.splice(originalCardIndex + 1, 0, newCard);
+
+    setCardsForActiveBoard(newCards);
+  };
+
+  const handleDeleteCard = (cardId: string) => {
+    if (!activeBoard) return;
+    const newCards = activeBoard.cards.filter((card) => card.id !== cardId);
+    setCardsForActiveBoard(newCards);
+  };
+  if (!mounted) {
+    return (
+      <div className="h-screen w-full bg-neutral-900" />
+    );
+  }
+
   return (
     <div className="flex h-screen w-full bg-neutral-900 text-neutral-50">
       <Sidebar
@@ -84,6 +147,8 @@ const KanbanApp = () => {
           cards={activeBoard.cards}
           setCards={setCardsForActiveBoard}
           handleUpdateCard={handleUpdateCard}
+          handleCopyCard={handleCopyCard}
+          handleDeleteCard={handleDeleteCard}
         />
       ) : (
         <div className="flex flex-col items-center justify-center w-full">
@@ -99,10 +164,14 @@ const Board = ({
   cards,
   setCards,
   handleUpdateCard,
+  handleCopyCard,
+  handleDeleteCard,
 }: {
   cards: CardType[];
   setCards: Dispatch<SetStateAction<CardType[]>>;
   handleUpdateCard: (cardId: string, newTitle: string) => void;
+  handleCopyCard: (cardId: string) => void;
+  handleDeleteCard: (cardId: string) => void;
 }) => {
   return (
     <div className="flex h-full w-full gap-3 overflow-scroll p-12">
@@ -113,14 +182,18 @@ const Board = ({
         cards={cards}
         setCards={setCards}
         handleUpdateCard={handleUpdateCard}
+        handleCopyCard={handleCopyCard}
+        handleDeleteCard={handleDeleteCard}
       />
       <Column
-        title="TODO"
-        column="todo"
+        title="TO DO"
+        column="to do"
         headingColor="text-yellow-200"
         cards={cards}
         setCards={setCards}
         handleUpdateCard={handleUpdateCard}
+        handleCopyCard={handleCopyCard}
+        handleDeleteCard={handleDeleteCard}
       />
       <Column
         title="In progress"
@@ -129,6 +202,8 @@ const Board = ({
         cards={cards}
         setCards={setCards}
         handleUpdateCard={handleUpdateCard}
+        handleCopyCard={handleCopyCard}
+        handleDeleteCard={handleDeleteCard}
       />
       <Column
         title="Complete"
@@ -137,8 +212,12 @@ const Board = ({
         cards={cards}
         setCards={setCards}
         handleUpdateCard={handleUpdateCard}
+        handleCopyCard={handleCopyCard}
+        handleDeleteCard={handleDeleteCard}
       />
-      <BurnBarrel setCards={setCards} />
+      <div className="sticky top-12 h-fit">
+        <BurnBarrel setCards={setCards} />
+      </div>
     </div>
   );
 };
@@ -150,6 +229,8 @@ type ColumnProps = {
   column: ColumnType;
   setCards: Dispatch<SetStateAction<CardType[]>>;
   handleUpdateCard: (cardId: string, newTitle: string) => void;
+  handleCopyCard: (cardId: string) => void;
+  handleDeleteCard: (cardId: string) => void;
 };
 
 const Column = ({
@@ -159,6 +240,8 @@ const Column = ({
   column,
   setCards,
   handleUpdateCard,
+  handleCopyCard,
+  handleDeleteCard,
 }: ColumnProps) => {
   const [active, setActive] = useState(false);
 
@@ -277,9 +360,8 @@ const Column = ({
         onDrop={handleDragEnd}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        className={`h-full w-full transition-colors ${
-          active ? "bg-neutral-800/50" : "bg-neutral-800/0"
-        }`}
+        className={`h-full w-full transition-colors ${active ? "bg-neutral-800/50" : "bg-neutral-800/0"
+          }`}
       >
         {filteredCards.map((c) => {
           return (
@@ -288,6 +370,8 @@ const Column = ({
               {...c}
               handleDragStart={handleDragStart}
               handleUpdateCard={handleUpdateCard}
+              handleCopyCard={handleCopyCard}
+              handleDeleteCard={handleDeleteCard}
               headingColor={headingColor}
             />
           );
@@ -302,15 +386,41 @@ const Column = ({
 type CardProps = CardType & {
   handleDragStart: Function;
   handleUpdateCard: (cardId: string, newTitle: string) => void;
+  handleCopyCard: (cardId: string) => void;
+  handleDeleteCard: (cardId: string) => void;
   headingColor: string;
+};
+
+const linkify = (text: string) => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text.split(urlRegex).map((part, i) => {
+    if (part.match(urlRegex)) {
+      return (
+        <a
+          key={i}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 hover:underline"
+          onClick={(e) => e.stopPropagation()} // Prevent card drag from firing on link click
+        >
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
 };
 
 const Card = ({
   title,
   id,
   column,
+  createdAt,
   handleDragStart,
   handleUpdateCard,
+  handleCopyCard,
+  handleDeleteCard,
   headingColor,
 }: CardProps) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -324,7 +434,7 @@ const Card = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSave();
     } else if (e.key === "Escape") {
@@ -355,8 +465,13 @@ const Card = ({
         layout
         layoutId={id}
         draggable="true"
-        onDragStart={(e) => handleDragStart(e, { title, id, column })}
-        className="group relative cursor-grab rounded border border-neutral-700 bg-neutral-800 p-3 active:cursor-grabbing"
+        onDragStart={(e) => handleDragStart(e, { title, id, column, createdAt })}
+        className={cn(
+          "group relative cursor-grab rounded border p-3 active:cursor-grabbing transition-all duration-200",
+          column === "done" 
+            ? "bg-emerald-950/40 border-emerald-500/40 shadow-sm shadow-emerald-900/20 hover:bg-emerald-900/40" 
+            : "border-neutral-700 bg-neutral-800 hover:bg-neutral-700/50"
+        )}
         style={{ borderLeft: `4px solid ${getBorderColor(headingColor)}` }}
       >
         {isEditing ? (
@@ -366,17 +481,39 @@ const Card = ({
             onBlur={handleSave}
             onKeyDown={handleKeyDown}
             autoFocus
-            className="w-full rounded bg-transparent text-sm text-neutral-100 focus:outline-none"
+            className="w-full resize-none rounded bg-transparent text-sm text-neutral-100 focus:outline-none"
+            style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}
           />
         ) : (
-          <p className="text-sm text-neutral-100">{title}</p>
+          <p
+            className={cn(
+              "text-sm",
+              column === "done" ? "text-emerald-50/90 line-through decoration-emerald-500/50" : "text-neutral-100"
+            )}
+            style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}
+          >
+            {linkify(title)}
+          </p>
         )}
-        <button
-          onClick={() => setIsEditing(true)}
-          className="absolute right-2 top-2 hidden group-hover:block"
-        >
-          <FiEdit />
-        </button>
+        <div className="absolute right-2 top-2 hidden group-hover:flex items-center gap-2">
+          <button onClick={() => handleCopyCard(id)}>
+            <FiCopy />
+          </button>
+          <button onClick={() => setIsEditing(true)}>
+            <FiEdit />
+          </button>
+          <button
+            onClick={() => handleDeleteCard(id)}
+            className="text-red-400 hover:text-red-500 transition-colors"
+          >
+            <FiTrash />
+          </button>
+        </div>
+        {createdAt && (
+          <p className="mt-2 text-right text-xs text-neutral-500">
+            {new Date(createdAt).toLocaleDateString()}
+          </p>
+        )}
       </motion.div>
     </>
   );
@@ -426,11 +563,10 @@ const BurnBarrel = ({
       onDrop={handleDragEnd}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
-      className={`mt-10 grid h-56 w-56 shrink-0 place-content-center rounded border text-3xl ${
-        active
+      className={`grid h-56 w-56 shrink-0 place-content-center rounded border text-3xl ${active
           ? "border-red-800 bg-red-800/20 text-red-500"
           : "border-neutral-500 bg-neutral-500/20 text-neutral-500"
-      }`}
+        }`}
     >
       {active ? <FaFire className="animate-bounce" /> : <FiTrash />}
     </div>
@@ -451,10 +587,11 @@ const AddCard = ({ column, setCards }: AddCardProps) => {
 
     if (!text.trim().length) return;
 
-    const newCard = {
+    const newCard: CardType = {
       column,
       title: text.trim(),
       id: Math.random().toString(),
+      createdAt: new Date().toISOString(),
     };
 
     setCards((pv) => [...pv, newCard]);
@@ -502,12 +639,13 @@ const AddCard = ({ column, setCards }: AddCardProps) => {
   );
 };
 
-type ColumnType = "backlog" | "todo" | "doing" | "done";
+type ColumnType = "backlog" | "todo" | "doing" | "done" | "to do";
 
 type CardType = {
   title: string;
   id: string;
   column: ColumnType;
+  createdAt: string;
 };
 
 type BoardType = {
@@ -517,27 +655,65 @@ type BoardType = {
 };
 
 const DEFAULT_CARDS: CardType[] = [
-  { title: "Look into render bug in dashboard", id: "1", column: "backlog" },
-  { title: "SOX compliance checklist", id: "2", column: "backlog" },
-  { title: "[SPIKE] Migrate to Azure", id: "3", column: "backlog" },
-  { title: "Document Notifications service", id: "4", column: "backlog" },
+  {
+    title: "Look into render bug in dashboard",
+    id: "1",
+    column: "backlog",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    title: "SOX compliance checklist",
+    id: "2",
+    column: "backlog",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    title: "[SPIKE] Migrate to Azure",
+    id: "3",
+    column: "backlog",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    title: "Document Notifications service",
+    id: "4",
+    column: "backlog",
+    createdAt: new Date().toISOString(),
+  },
   {
     title: "Research DB options for new microservice",
     id: "5",
-    column: "todo",
+    column: "to do",
+    createdAt: new Date().toISOString(),
   },
-  { title: "Postmortem for outage", id: "6", column: "todo" },
-  { title: "Sync with product on Q3 roadmap", id: "7", column: "todo" },
+  {
+    title: "Postmortem for outage",
+    id: "6",
+    column: "to do",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    title: "Sync with product on Q3 roadmap",
+    id: "7",
+    column: "to do",
+    createdAt: new Date().toISOString(),
+  },
 
   {
     title: "Refactor context providers to use Zustand",
     id: "8",
     column: "doing",
+    createdAt: new Date().toISOString(),
   },
-  { title: "Add logging to daily CRON", id: "9", column: "doing" },
+  {
+    title: "Add logging to daily CRON",
+    id: "9",
+    column: "doing",
+    createdAt: new Date().toISOString(),
+  },
   {
     title: "Set up DD dashboards for Lambda listener",
     id: "10",
     column: "done",
+    createdAt: new Date().toISOString(),
   },
 ];
