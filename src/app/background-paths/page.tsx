@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function BackgroundPathsPage() {
   return (
-    <main className="w-full">
+    <main className="w-full dark">
       <BackgroundPaths title="Animated Background Paths" />
     </main>
   );
