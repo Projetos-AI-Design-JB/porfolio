@@ -23,18 +23,36 @@ export default function ClientesPage() {
 
   useEffect(() => {
     fetch(API).then(res => res.json()).then(json => {
-      setProjects(json.data ?? [])
+      const kanbanProject = {
+        id: 999,
+        title: 'Kanban IA System',
+        description: 'Advanced Kanban board with Drag and Drop capabilities and AI-ready architecture. Features sticky columns, smooth animations, and isolated micro-frontend routing.',
+        tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
+        url: '/kanban',
+        image: ''
+      }
+      setProjects([kanbanProject, ...(json.data ?? [])])
       setLoading(false)
     }).catch(() => setLoading(false))
   }, [])
 
-  const handleContact = (e: React.FormEvent) => {
+  const handleContact = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const message = formData.get('message')
+
+    const subject = encodeURIComponent(`New Project Inquiry from ${name}`)
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject Details:\n${message}`)
+    
+    window.location.href = `mailto:jb.mktdigital@gmail.com?subject=${subject}&body=${body}`
+
     setSent(true)
     setTimeout(() => {
       setSent(false)
       setModal(false)
-    }, 3000)
+    }, 5000)
   }
 
   return (
@@ -105,15 +123,15 @@ export default function ClientesPage() {
               <form onSubmit={handleContact} className="crud-form">
                 <label>
                   Your Name
-                  <input required placeholder="What should I call you?" />
+                  <input name="name" required placeholder="What should I call you?" />
                 </label>
                 <label>
                   Work Email
-                  <input required type="email" placeholder="you@company.com" />
+                  <input name="email" required type="email" placeholder="you@company.com" />
                 </label>
                 <label>
                   About the Project
-                  <textarea required placeholder="Tell me a bit about your idea..." />
+                  <textarea name="message" required placeholder="Tell me a bit about your idea..." />
                 </label>
                 <div className="form-actions">
                   <button type="button" className="btn-cancel" onClick={() => setModal(false)}>Back</button>

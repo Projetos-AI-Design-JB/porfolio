@@ -10,10 +10,16 @@ interface SplineSceneProps {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function handleSplineLoad(splineApp: any) {
   try {
-    // Confirmed in @splinetool/runtime runtime.d.ts — accepts CSS color string
     splineApp.setBackgroundColor('transparent')
   } catch {
     // no-op
+  }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function handleSplineMouseDown(e: any) {
+  if (e.target.name.toLowerCase().includes('touch') || e.target.name.toLowerCase().includes('button')) {
+    window.open('https://www.linkedin.com/in/juliano-bianchesi', '_blank')
   }
 }
 
@@ -23,6 +29,7 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
       scene={scene}
       className={className}
       onLoad={handleSplineLoad}
+      onMouseDown={handleSplineMouseDown}
       style={{ background: 'transparent' }}
     />
   )
