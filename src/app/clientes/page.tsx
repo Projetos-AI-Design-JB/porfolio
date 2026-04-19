@@ -79,7 +79,7 @@ export default function ClientesPage() {
           <span className="hero-badge">Available for Projects</span>
           <h1 className="hero-title">
             Transforming ideas into<br />
-            <span className="gradient-text">elite software</span>
+            <span className="gradient-text">elite designs</span>
           </h1>
           <p className="hero-sub">
             Explore my recent work and let's build something amazing for your business.
