@@ -1,16 +1,6 @@
 'use client'
 
-import { Suspense } from 'react'
-import dynamic from 'next/dynamic'
-
-const Spline = dynamic(() => import('@splinetool/react-spline'), { 
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center">
-      <span className="loader" />
-    </div>
-  )
-})
+import Spline from '@splinetool/react-spline/next'
 
 interface SplineSceneProps {
   scene: string
