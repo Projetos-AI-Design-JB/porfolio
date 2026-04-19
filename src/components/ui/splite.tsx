@@ -18,8 +18,10 @@ function handleSplineLoad(splineApp: any) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function handleSplineMouseUp(e: any) {
-  // Ignora o filtro de nomes da malha 3D e força o disparo para não ter erro
-  window.open('https://www.linkedin.com/in/juliano-bianchesi', '_blank')
+  // Filtra o clique exatamente para o botão nomeado "GET IN TOUCH" dentro da cena 3D
+  if (e.target && e.target.name && e.target.name.toUpperCase().includes('GET IN TOUCH')) {
+    window.open('https://www.linkedin.com/in/juliano-bianchesi', '_blank')
+  }
 }
 
 export function SplineScene({ scene, className }: SplineSceneProps) {
