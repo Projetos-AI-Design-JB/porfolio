@@ -2,12 +2,11 @@
   "name": "agent-designer-web-temp",
   "version": "0.1.0",
   "private": true,
-    "scripts": {
+  "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "lint": "eslint",
-    "server": "node server.js"
+    "start": "node server.js",
+    "lint": "eslint"
   },
   "dependencies": {
     "@splinetool/react-spline": "^4.1.0",
