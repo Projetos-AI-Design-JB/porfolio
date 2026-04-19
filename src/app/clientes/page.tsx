@@ -57,7 +57,7 @@ export default function ClientesPage() {
 
         <div className="hero-scene">
           <SplineScene
-            scene="https://prod.spline.design/ATIn6W-66-8H8W6E/scene.splinecode"
+            scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
             className="w-full h-full"
           />
         </div>
@@ -78,7 +78,7 @@ export default function ClientesPage() {
                 </div>
                 <p className="card-desc">{p.description}</p>
                 <div className="card-tech">
-                  {p.tech.map(t => <span key={t} className="tech-tag">{t}</span>)}
+                  {Array.isArray(p.tech) && p.tech.map(t => <span key={t} className="tech-tag">{t}</span>)}
                 </div>
                 {p.url && (
                   <a href={p.url} target="_blank" rel="noreferrer" className="card-link">
