@@ -21,7 +21,7 @@ function handleSplineMouseDown(e: any) {
   // Broadening the name check to find "GET IN TOUCH" anywhere in the target string
   const targetName = e.target?.name || '';
   if (targetName.toUpperCase().includes('GET') && targetName.toUpperCase().includes('TOUCH')) {
-    window.open('https://www.linkedin.com/in/julianobianchesi', '_blank')
+    window.open('https://linkedin.com/in/juliano-bianchesi', '_blank')
   }
 }
 
