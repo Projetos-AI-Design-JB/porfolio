@@ -18,7 +18,9 @@ function handleSplineLoad(splineApp: any) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function handleSplineMouseDown(e: any) {
-  if (e.target.name.toLowerCase().includes('touch') || e.target.name.toLowerCase().includes('button')) {
+  // Remove restriction: 3D groups can have arbitrary names (Group 1, Rectangle, Mesh).
+  // Now, clicking anywhere on the interactive meshes in the robot opens the link.
+  if (e.target && e.target.name) {
     window.open('https://www.linkedin.com/in/juliano-bianchesi', '_blank')
   }
 }
