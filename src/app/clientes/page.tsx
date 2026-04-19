@@ -39,7 +39,15 @@ export default function ClientesPage() {
         url: '/background-paths',
         image: ''
       }
-      setProjects([kanbanProject, backgroundPathsProject, ...(json.data ?? [])])
+      const heroProject = {
+        id: 997,
+        title: '3D Cosmos Experiential Hero',
+        description: 'Immersive cinematic WebGL hero section featuring GSAP scroll-triggered parallax, volumetric atmosphere, and dynamic procedural stars.',
+        tech: ['Three.js', 'GSAP', 'WebGL', 'React'],
+        url: '/3d-hero',
+        image: ''
+      }
+      setProjects([kanbanProject, backgroundPathsProject, heroProject, ...(json.data ?? [])])
       setLoading(false)
     }).catch(() => setLoading(false))
   }, [])
