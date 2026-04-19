@@ -42,16 +42,16 @@ export default function ClientesPage() {
       {/* ── Client Hero ── */}
       <section className="hero">
         <div className="hero-text">
-          <span className="hero-badge">Disponível para Projetos</span>
+          <span className="hero-badge">Available for Projects</span>
           <h1 className="hero-title">
-            Transformando ideias em<br />
-            <span className="gradient-text">software de elite</span>
+            Transforming ideas into<br />
+            <span className="gradient-text">elite software</span>
           </h1>
           <p className="hero-sub">
-            Explore meus trabalhos recentes e vamos construir algo incrível para sua empresa.
+            Explore my recent work and let's build something amazing for your business.
           </p>
           <button className="btn-primary" onClick={() => setModal(true)}>
-            Solicitar Orçamento
+            Request a Quote
           </button>
         </div>
 
@@ -82,7 +82,7 @@ export default function ClientesPage() {
                 </div>
                 {p.url && (
                   <a href={p.url} target="_blank" rel="noreferrer" className="card-link">
-                    Explorar Projeto ↗
+                    Explore Project ↗
                   </a>
                 )}
               </article>
@@ -95,29 +95,29 @@ export default function ClientesPage() {
       {modal && (
         <div className="modal-overlay" onClick={() => setModal(false)}>
           <div className="modal" onClick={e => e.stopPropagation()}>
-            <h2 className="modal-title">Vamos conversar?</h2>
+            <h2 className="modal-title">Let's talk?</h2>
             {sent ? (
               <div className="sent-success">
                 <div className="loader" style={{ borderColor: '#10b981', borderTopColor: 'transparent' }}></div>
-                <p>Mensagem enviada com sucesso! Entrarei em contato em breve.</p>
+                <p>Message sent successfully! I will reach out soon.</p>
               </div>
             ) : (
               <form onSubmit={handleContact} className="crud-form">
                 <label>
-                  Seu Nome
-                  <input required placeholder="Como devo te chamar?" />
+                  Your Name
+                  <input required placeholder="What should I call you?" />
                 </label>
                 <label>
-                  E-mail Profissional
-                  <input required type="email" placeholder="seu@email.com" />
+                  Work Email
+                  <input required type="email" placeholder="you@company.com" />
                 </label>
                 <label>
-                  Sobre o Projeto
-                  <textarea required placeholder="Conte um pouco sobre sua ideia..." />
+                  About the Project
+                  <textarea required placeholder="Tell me a bit about your idea..." />
                 </label>
                 <div className="form-actions">
-                  <button type="button" className="btn-cancel" onClick={() => setModal(false)}>Voltar</button>
-                  <button type="submit" className="btn-primary">Enviar Mensagem</button>
+                  <button type="button" className="btn-cancel" onClick={() => setModal(false)}>Back</button>
+                  <button type="submit" className="btn-primary">Send Message</button>
                 </div>
               </form>
             )}

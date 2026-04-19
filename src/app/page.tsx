@@ -38,7 +38,7 @@ export default function PortfolioPage() {
       const json = await res.json()
       setProjects(json.data ?? [])
     } catch {
-      setError('API offline. Inicie o servidor: node server.js')
+      setError('Database is offline. Please check your connection or deployment.')
     } finally {
       setLoading(false)
     }
@@ -66,7 +66,7 @@ export default function PortfolioPage() {
 
   // ── Delete ─────────────────────────────────────────────────────────
   const handleDelete = async (id: number) => {
-    if (!confirm('Remover este projeto?')) return
+    if (!confirm('Are you sure you want to delete this project?')) return
     await fetch(`${API}/${id}`, { method: 'DELETE' })
     fetchProjects()
   }
@@ -92,14 +92,14 @@ export default function PortfolioPage() {
         <div className="hero-text">
           <span className="hero-badge">Open to work</span>
           <h1 className="hero-title">
-            Criando experiências<br />
-            <span className="gradient-text">digitais únicas</span>
+            Crafting unique<br />
+            <span className="gradient-text">digital experiences</span>
           </h1>
           <p className="hero-sub">
-            Desenvolvedor Full Stack · Designer · IA Generativa
+            Full Stack Developer · UI/UX Designer · Generative AI
           </p>
           <button className="btn-primary" onClick={openCreate}>
-            + Novo Projeto
+            + New Project
           </button>
         </div>
 
@@ -114,7 +114,7 @@ export default function PortfolioPage() {
 
       {/* ── Projects grid ── */}
       <section className="projects-section">
-        <h2 className="section-title">Projetos</h2>
+        <h2 className="section-title">Projects</h2>
 
         {error && <div className="api-error">{error}</div>}
 
@@ -138,11 +138,11 @@ export default function PortfolioPage() {
                 </div>
                 {p.url && (
                   <a href={p.url} target="_blank" rel="noreferrer" className="card-link">
-                    Ver projeto ↗
+                    View Project ↗
                   </a>
                 )}
                 <div className="card-actions">
-                  <button className="btn-edit" onClick={() => openEdit(p)}>Editar</button>
+                  <button className="btn-edit" onClick={() => openEdit(p)}>Edit</button>
                 </div>
               </article>
             ))}
@@ -154,18 +154,18 @@ export default function PortfolioPage() {
       {modal && (
         <div className="modal-overlay" onClick={() => setModal(false)}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h2 className="modal-title">{editing ? 'Editar Projeto' : 'Novo Projeto'}</h2>
+            <h2 className="modal-title">{editing ? 'Edit Project' : 'New Project'}</h2>
             <form onSubmit={handleSubmit} className="crud-form">
               <label>
-                Título *
-                <input required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="Ex: Kanban Board" />
+                Title *
+                <input required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="E.g. Kanban Board" />
               </label>
               <label>
-                Descrição *
-                <textarea required value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder="Descreva o projeto..." />
+                Description *
+                <textarea required value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder="Describe the project..." />
               </label>
               <label>
-                Tecnologias <small>(separadas por vírgula)</small>
+                Technologies <small>(comma-separated)</small>
                 <input value={form.tech} onChange={(e) => setForm({ ...form, tech: e.target.value })} placeholder="React, Node.js, TypeScript" />
               </label>
               <label>
@@ -173,8 +173,8 @@ export default function PortfolioPage() {
                 <input value={form.url} onChange={(e) => setForm({ ...form, url: e.target.value })} placeholder="https://github.com/..." />
               </label>
               <div className="form-actions">
-                <button type="button" className="btn-cancel" onClick={() => setModal(false)}>Cancelar</button>
-                <button type="submit" className="btn-primary">{editing ? 'Salvar' : 'Criar'}</button>
+                <button type="button" className="btn-cancel" onClick={() => setModal(false)}>Cancel</button>
+                <button type="submit" className="btn-primary">{editing ? 'Save' : 'Create'}</button>
               </div>
             </form>
           </div>
