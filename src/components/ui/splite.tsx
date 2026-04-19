@@ -1,6 +1,6 @@
 'use client'
 
-import Spline from '@splinetool/react-spline/next'
+import Spline from '@splinetool/react-spline'
 
 interface SplineSceneProps {
   scene: string
