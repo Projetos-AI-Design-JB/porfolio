@@ -106,7 +106,7 @@ export default function PortfolioPage() {
         {/* Spline 3D scene */}
         <div className="hero-scene">
           <SplineScene
-            scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
+            scene="https://prod.spline.design/6xHIfj9Hj-LnQE7J/scene.splinecode"
             className="w-full h-full"
           />
         </div>

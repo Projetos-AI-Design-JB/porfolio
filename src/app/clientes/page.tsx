@@ -57,7 +57,7 @@ export default function ClientesPage() {
 
         <div className="hero-scene">
           <SplineScene
-            scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
+            scene="https://prod.spline.design/6xHIfj9Hj-LnQE7J/scene.splinecode"
             className="w-full h-full"
           />
         </div>
@@ -68,7 +68,7 @@ export default function ClientesPage() {
         <h2 className="section-title">Case Studies</h2>
         <div className="projects-grid">
           {loading ? (
-             [1,2,3].map(i => <div key={i} className="skeleton-card" />)
+            [1, 2, 3].map(i => <div key={i} className="skeleton-card" />)
           ) : (
             projects.map(p => (
               <article key={p.id} className="project-card">
