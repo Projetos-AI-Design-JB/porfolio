@@ -17,9 +17,10 @@ function handleSplineLoad(splineApp: any) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function handleSplineMouseUp(e: any) {
-  // Filtra o clique exatamente para o botão nomeado "GET IN TOUCH" dentro da cena 3D
-  if (e.target && e.target.name && e.target.name.toUpperCase().includes('GET IN TOUCH')) {
+function handleSplineMouseDown(e: any) {
+  // Broadening the name check to find "GET IN TOUCH" anywhere in the target string
+  const targetName = e.target?.name || '';
+  if (targetName.toUpperCase().includes('GET') && targetName.toUpperCase().includes('TOUCH')) {
     window.open('https://www.linkedin.com/in/juliano-bianchesi', '_blank')
   }
 }
@@ -30,7 +31,7 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
       scene={scene}
       className={className}
       onLoad={handleSplineLoad}
-      onMouseUp={handleSplineMouseUp}
+      onMouseDown={handleSplineMouseDown}
       style={{ background: 'transparent' }}
     />
   )
