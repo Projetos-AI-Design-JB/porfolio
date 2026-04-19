@@ -17,12 +17,9 @@ function handleSplineLoad(splineApp: any) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function handleSplineMouseDown(e: any) {
-  // Remove restriction: 3D groups can have arbitrary names (Group 1, Rectangle, Mesh).
-  // Now, clicking anywhere on the interactive meshes in the robot opens the link.
-  if (e.target && e.target.name) {
-    window.open('https://www.linkedin.com/in/juliano-bianchesi', '_blank')
-  }
+function handleSplineMouseUp(e: any) {
+  // Ignora o filtro de nomes da malha 3D e força o disparo para não ter erro
+  window.open('https://www.linkedin.com/in/juliano-bianchesi', '_blank')
 }
 
 export function SplineScene({ scene, className }: SplineSceneProps) {
@@ -31,7 +28,7 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
       scene={scene}
       className={className}
       onLoad={handleSplineLoad}
-      onMouseDown={handleSplineMouseDown}
+      onMouseUp={handleSplineMouseUp}
       style={{ background: 'transparent' }}
     />
   )
