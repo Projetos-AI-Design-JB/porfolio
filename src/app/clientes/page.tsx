@@ -31,7 +31,15 @@ export default function ClientesPage() {
         url: '/kanban',
         image: ''
       }
-      setProjects([kanbanProject, ...(json.data ?? [])])
+      const backgroundPathsProject = {
+        id: 998,
+        title: 'Animated Background Paths',
+        description: 'A stunning, interactive floating SVG paths animation built with Framer Motion, perfect for hero sections.',
+        tech: ['Next.js', 'React', 'Tailwind', 'Framer Motion'],
+        url: '/background-paths',
+        image: ''
+      }
+      setProjects([kanbanProject, backgroundPathsProject, ...(json.data ?? [])])
       setLoading(false)
     }).catch(() => setLoading(false))
   }, [])
