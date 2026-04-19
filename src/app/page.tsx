@@ -92,8 +92,8 @@ export default function PortfolioPage() {
         <div className="hero-text">
           <span className="hero-badge">Open to work</span>
           <h1 className="hero-title">
-            Crafting unique<br />
-            <span className="gradient-text">digital experiences</span>
+            Transforming ideas into<br />
+            <span className="gradient-text">elite designs</span>
           </h1>
           <p className="hero-sub">
             Full Stack Developer · UI/UX Designer · Generative AI
