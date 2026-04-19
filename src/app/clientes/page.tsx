@@ -13,9 +13,7 @@ interface Project {
   image: string
 }
 
-const API = typeof window !== 'undefined' && window.location.hostname !== 'localhost'
-  ? 'https://porfolio-1-z6e2.onrender.com/api/projects'
-  : 'http://localhost:3001/api/projects'
+const API = '/api/projects'
 
 export default function ClientesPage() {
   const [projects, setProjects] = useState<Project[]>([])
