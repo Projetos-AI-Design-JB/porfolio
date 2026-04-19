@@ -434,6 +434,22 @@
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ── Responsive ── */
+/* ── Contact Success ── */
+.sent-success {
+  text-align: center;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.sent-success p {
+  color: #10b981;
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
