@@ -15,9 +15,7 @@ const PORT = process.env.PORT || 3001;
 // ── Pool de conexão PostgreSQL ─────────────────────────────────────
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production'
-    ? { rejectUnauthorized: false }   // Supabase exige SSL em produção
-    : false,
+  ssl: { rejectUnauthorized: false }, // Obrigatório para Supabase fora do localhost
 });
 
 // Testa a conexão ao inicializar

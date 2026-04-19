@@ -16,7 +16,9 @@ interface Project {
   updatedAt?: string
 }
 
-const API = 'http://localhost:3001/api/projects'
+const API = typeof window !== 'undefined' && window.location.hostname !== 'localhost'
+  ? 'https://porfolio-1-z6e2.onrender.com/api/projects'
+  : 'http://localhost:3001/api/projects'
 
 // ── Defaults ────────────────────────────────────────────────────────
 const emptyForm = { title: '', description: '', tech: '', url: '' }
