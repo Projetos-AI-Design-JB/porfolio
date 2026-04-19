@@ -621,7 +621,7 @@ export const HeroSection = () => {
         <div className="progress-track">
           <div 
             className="progress-fill" 
-            style={{ width: \`\${scrollProgress * 100}%\` }}
+            style={{ width: `${scrollProgress * 100}%` }}
           />
         </div>
         <div className="section-counter">

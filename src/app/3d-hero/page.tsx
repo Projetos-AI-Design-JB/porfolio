@@ -1,10 +1,5 @@
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
-
-const HeroSection = dynamic(
-  () => import("@/components/ui/hero-section").then((mod) => mod.HeroSection),
-  { ssr: false }
-);
+import { HeroWrapper } from "@/components/ui/hero-wrapper";
 
 export const metadata: Metadata = {
   title: "3D Cosmos Hero - Julian",
@@ -13,7 +8,7 @@ export const metadata: Metadata = {
 export default function HeroSectionPage() {
   return (
     <main className="w-full">
-      <HeroSection />
+      <HeroWrapper />
     </main>
   );
 }
