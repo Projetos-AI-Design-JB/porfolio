@@ -1,185 +1,161 @@
 'use client'
 
-import './portfolio.css'
-import { useEffect, useState } from 'react'
-import { SplineScene } from '@/components/ui/splite'
+import React from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { 
+  ExternalLink,
+  ChevronRight
+} from 'lucide-react'
+import { 
+  FaInstagram, 
+  FaTiktok, 
+  FaYoutube, 
+  FaLinkedin, 
+  FaWhatsapp 
+} from 'react-icons/fa'
 
-// ── Types ───────────────────────────────────────────────────────────
-interface Project {
-  id: number
-  title: string
-  description: string
-  tech: string[]
-  url: string
-  image: string
-  createdAt: string
-  updatedAt?: string
+export default function LandingPage() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
+  }
+
+  return (
+    <main className="relative min-h-screen w-full bg-[#020617] text-slate-100 flex flex-col items-center justify-center p-6 overflow-hidden font-sans selection:bg-cyan-500/30">
+      {/* Background Radial Gradient */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_#164e63_0%,_transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_#1e1b4b_0%,_transparent_50%)] pointer-events-none opacity-50" />
+
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 w-full max-w-2xl flex flex-col items-center"
+      >
+        {/* Avatar Section */}
+        <motion.div variants={itemVariants} className="relative mb-8">
+          <div className="w-32 h-32 md:w-40 md:h-40 rounded-full p-1.5 ring-4 ring-cyan-500/30 overflow-hidden bg-slate-900 border-2 border-cyan-400/80 shadow-[0_0_50px_rgba(6,182,212,0.15)]">
+            <img 
+              src="/JB-vibecode.png" 
+              alt="Julian Kezy"
+              className="w-full h-full object-cover rounded-full"
+            />
+          </div>
+          {/* Online Status Dot */}
+          <div className="absolute bottom-2 right-2 w-5 h-5 bg-[#22c55e] rounded-full border-4 border-[#020617] shadow-[0_0_15px_#22c55e]" />
+        </motion.div>
+
+        {/* Name and Titles */}
+        <motion.div variants={itemVariants} className="text-center mb-10">
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-slate-500 font-heading">
+            Julian Kezy
+          </h1>
+          <div className="flex flex-wrap justify-center gap-3">
+            <span className="px-5 py-2 rounded-full bg-slate-800/40 border border-slate-700/50 text-xs font-semibold backdrop-blur-md text-slate-300 uppercase tracking-widest">
+              Software Engineer
+            </span>
+            <span className="px-5 py-2 rounded-full bg-slate-800/40 border border-slate-700/50 text-xs font-semibold backdrop-blur-md text-slate-300 uppercase tracking-widest">
+              Solutions Architect
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Social Icons */}
+        <motion.div variants={itemVariants} className="flex gap-4 mb-16">
+          <SocialIcon icon={<FaInstagram size={22} />} href="#" />
+          <SocialIcon icon={<FaTiktok size={20} />} href="#" />
+          <SocialIcon icon={<FaYoutube size={22} />} href="#" />
+          <SocialIcon icon={<FaLinkedin size={22} />} href="#" />
+          <SocialIcon icon={<FaWhatsapp size={22} />} href="#" highlight />
+        </motion.div>
+
+        {/* Action Button Section */}
+        <motion.div variants={itemVariants} className="w-full">
+          <div className="text-center mb-6">
+            <span className="text-[10px] font-bold tracking-[0.3em] text-cyan-500/80 uppercase">
+              Main Access
+            </span>
+          </div>
+          
+          <Link href="/clientes">
+            <motion.div 
+              whileHover={{ scale: 1.01, backgroundColor: 'rgba(30, 41, 59, 0.6)' }}
+              whileTap={{ scale: 0.99 }}
+              className="group relative w-full p-6 md:p-10 rounded-[2rem] bg-slate-800/30 border border-slate-700/40 backdrop-blur-xl flex items-center justify-between transition-all duration-500 shadow-2xl overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="flex items-center gap-8 relative z-10">
+                <div className="w-16 h-16 rounded-2xl bg-cyan-950/50 border border-cyan-800/50 flex items-center justify-center text-cyan-400 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.2)] transition-all duration-500">
+                  <ExternalLink size={28} />
+                </div>
+                <div className="text-left">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-2xl md:text-4xl font-bold text-white font-heading tracking-tight">Portfolio</h3>
+                    <span className="px-2.5 py-0.5 rounded-md bg-cyan-500/20 text-cyan-400 text-[10px] font-black uppercase tracking-tighter">
+                      Live
+                    </span>
+                  </div>
+                  <p className="text-slate-400 text-sm md:text-lg mt-1 font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+                    Explore my recent projects and case studies
+                  </p>
+                </div>
+              </div>
+              
+              <div className="text-slate-500 group-hover:text-white transition-all duration-500 translate-x-0 group-hover:translate-x-1 relative z-10">
+                <ChevronRight size={32} strokeWidth={1.5} />
+              </div>
+
+              {/* Decorative border glow */}
+              <div className="absolute inset-px rounded-[1.9rem] pointer-events-none border border-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </motion.div>
+          </Link>
+        </motion.div>
+      </motion.div>
+
+      {/* Footer / Copyright */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="mt-auto pt-16 text-slate-600 text-[10px] font-bold tracking-[0.4em] uppercase"
+      >
+        © 2026 Crafted by Julian Kezy
+      </motion.div>
+    </main>
+  )
 }
 
-const API = '/api/projects'
-
-// ── Defaults ────────────────────────────────────────────────────────
-const emptyForm = { title: '', description: '', tech: '', url: '' }
-
-// ── Main Page ───────────────────────────────────────────────────────
-export default function PortfolioPage() {
-  const [projects, setProjects] = useState<Project[]>([])
-  const [loading, setLoading] = useState(true)
-  const [form, setForm] = useState(emptyForm)
-  const [editing, setEditing] = useState<number | null>(null)
-  const [modal, setModal] = useState(false)
-  const [error, setError] = useState('')
-
-  // ── Fetch ──────────────────────────────────────────────────────────
-  const fetchProjects = async () => {
-    try {
-      setLoading(true)
-      const res = await fetch(API)
-      const json = await res.json()
-      setProjects(json.data ?? [])
-    } catch {
-      setError('Database is offline. Please check your connection or deployment.')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => { fetchProjects() }, [])
-
-  // ── Create / Update ────────────────────────────────────────────────
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const payload = {
-      title: form.title,
-      description: form.description,
-      tech: form.tech.split(',').map((t) => t.trim()).filter(Boolean),
-      url: form.url,
-    }
-    const url = editing ? `${API}/${editing}` : API
-    const method = editing ? 'PUT' : 'POST'
-    await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-    setForm(emptyForm)
-    setEditing(null)
-    setModal(false)
-    fetchProjects()
-  }
-
-  // ── Delete ─────────────────────────────────────────────────────────
-  const handleDelete = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this project?')) return
-    await fetch(`${API}/${id}`, { method: 'DELETE' })
-    fetchProjects()
-  }
-
-  // ── Edit setup ─────────────────────────────────────────────────────
-  const openEdit = (p: Project) => {
-    setForm({ title: p.title, description: p.description, tech: p.tech.join(', '), url: p.url })
-    setEditing(p.id)
-    setModal(true)
-  }
-
-  const openCreate = () => {
-    setForm(emptyForm)
-    setEditing(null)
-    setModal(true)
-  }
-
-  // ── UI ─────────────────────────────────────────────────────────────
+function SocialIcon({ icon, href, highlight = false }: { icon: React.ReactNode, href: string, highlight?: boolean }) {
   return (
-    <div className="portfolio-root">
-      {/* ── Hero ── */}
-      <section className="hero">
-        <div className="hero-text">
-          <span className="hero-badge">Open to work</span>
-          <h1 className="hero-title">
-            Transforming ideas into<br />
-            <span className="gradient-text">elite designs</span>
-          </h1>
-          <p className="hero-sub">
-            Full Stack Developer · UI/UX Designer · Generative AI
-          </p>
-          <button className="btn-primary" onClick={openCreate}>
-            + New Project
-          </button>
-        </div>
-
-        {/* Spline 3D scene */}
-        <div className="hero-scene">
-          <SplineScene
-            scene="https://prod.spline.design/6xHIfj9Hj-LnQE7J/scene.splinecode"
-            className="w-full h-full"
-          />
-        </div>
-      </section>
-
-      {/* ── Projects grid ── */}
-      <section className="projects-section">
-        <h2 className="section-title">Projects</h2>
-
-        {error && <div className="api-error">{error}</div>}
-
-        {loading ? (
-          <div className="skeleton-grid">
-            {[1, 2, 3].map((i) => <div key={i} className="skeleton-card" />)}
-          </div>
-        ) : (
-          <div className="projects-grid">
-            {projects.map((p) => (
-              <article key={p.id} className="project-card">
-                <div className="card-header">
-                  <span className="card-id">#{p.id}</span>
-                  <h3 className="card-title">{p.title}</h3>
-                </div>
-                <p className="card-desc">{p.description}</p>
-                <div className="card-tech">
-                  {Array.isArray(p.tech) && p.tech.map((t) => (
-                    <span key={t} className="tech-tag">{t}</span>
-                  ))}
-                </div>
-                {p.url && (
-                  <a href={p.url} target="_blank" rel="noreferrer" className="card-link">
-                    View Project ↗
-                  </a>
-                )}
-                <div className="card-actions">
-                  <button className="btn-edit" onClick={() => openEdit(p)}>Edit</button>
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* ── Modal CRUD ── */}
-      {modal && (
-        <div className="modal-overlay" onClick={() => setModal(false)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h2 className="modal-title">{editing ? 'Edit Project' : 'New Project'}</h2>
-            <form onSubmit={handleSubmit} className="crud-form">
-              <label>
-                Title *
-                <input required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="E.g. Kanban Board" />
-              </label>
-              <label>
-                Description *
-                <textarea required value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder="Describe the project..." />
-              </label>
-              <label>
-                Technologies <small>(comma-separated)</small>
-                <input value={form.tech} onChange={(e) => setForm({ ...form, tech: e.target.value })} placeholder="React, Node.js, TypeScript" />
-              </label>
-              <label>
-                URL
-                <input value={form.url} onChange={(e) => setForm({ ...form, url: e.target.value })} placeholder="https://github.com/..." />
-              </label>
-              <div className="form-actions">
-                <button type="button" className="btn-cancel" onClick={() => setModal(false)}>Cancel</button>
-                <button type="submit" className="btn-primary">{editing ? 'Save' : 'Create'}</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-    </div>
+    <motion.a
+      href={href}
+      whileHover={{ y: -4, scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      className={`
+        w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300
+        ${highlight 
+          ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30 shadow-[0_0_20px_rgba(37,99,235,0.3)]' 
+          : 'bg-slate-800/40 text-slate-400 border border-slate-700/50 hover:bg-slate-700/60 hover:text-white'
+        }
+      `}
+    >
+      {icon}
+    </motion.a>
   )
 }
