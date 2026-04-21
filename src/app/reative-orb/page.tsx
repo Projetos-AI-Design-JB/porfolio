@@ -6,6 +6,8 @@ const Spline = dynamic(() => import('@splinetool/react-spline'), {
   ssr: false,
 });
 
+export const dynamic = "force-static";
+
 export default function Home() {
   return (
     <main className="relative w-full h-screen overflow-hidden bg-black">
