@@ -1,6 +1,7 @@
 'use client'
 
 import '../portfolio.css'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { SplineScene } from '@/components/ui/splite'
 
@@ -47,7 +48,15 @@ export default function ClientesPage() {
         url: '/3d-hero',
         image: ''
       }
-      setProjects([kanbanProject, backgroundPathsProject, heroProject, ...(json.data ?? [])])
+      const reactiveOrbProject = {
+        id: 996,
+        title: 'Reactive Orb',
+        description: 'Interactive cursor-following 3D orb built with Spline and React spring physics.',
+        tech: ['Spline', 'React', 'CSS'],
+        url: '/reative-orb',
+        image: ''
+      }
+      setProjects([kanbanProject, backgroundPathsProject, heroProject, reactiveOrbProject, ...(json.data ?? [])])
       setLoading(false)
     }).catch(() => setLoading(false))
   }, [])
@@ -115,9 +124,9 @@ export default function ClientesPage() {
                   {Array.isArray(p.tech) && p.tech.map(t => <span key={t} className="tech-tag">{t}</span>)}
                 </div>
                 {p.url && (
-                  <a href={p.url} target="_blank" rel="noreferrer" className="card-link">
+                  <Link href={p.url} target="_blank" rel="noreferrer" className="card-link">
                     Explore Project ↗
-                  </a>
+                  </Link>
                 )}
               </article>
             ))
