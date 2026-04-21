@@ -134,7 +134,7 @@ const KanbanApp = () => {
   }
 
   return (
-    <div className="flex h-screen w-full bg-neutral-900 text-neutral-50">
+    <div className="flex h-screen w-full bg-neutral-900 text-neutral-50 font-open-sans">
       <Sidebar
         boards={boards}
         activeBoardId={activeBoardId}
