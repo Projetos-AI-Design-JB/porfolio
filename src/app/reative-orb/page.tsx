@@ -49,16 +49,20 @@ export default function Home() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
+          background: black;
         }
         .spline-wrapper {
-          width: 100%;
-          height: 100%;
-          transform: scale(0.8);
+          width: 100vw;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: scale(0.9);
           transform-origin: center center;
         }
         @media (max-width: 768px) {
           .spline-wrapper {
-            transform: scale(0.6) translateX(-10%);
+            transform: scale(0.8);
           }
         }
       `}</style>
