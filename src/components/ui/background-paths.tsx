@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 function FloatingPaths({ position }: { position: number }) {
     const paths = Array.from({ length: 36 }, (_, i) => ({
@@ -56,6 +57,7 @@ export function BackgroundPaths({
     title?: string;
 }) {
     const words = title.split(" ");
+    const router = useRouter();
 
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white dark:bg-black">
@@ -105,7 +107,7 @@ export function BackgroundPaths({
 
                     <div className="flex flex-wrap justify-center gap-4">
                         <Button
-                            onClick={() => window.location.href = '/kanban'}
+                            onClick={() => router.push('/kanban')}
                             variant="ghost"
                             className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
                             bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
@@ -116,7 +118,7 @@ export function BackgroundPaths({
                             Kanban
                         </Button>
                         <Button
-                            onClick={() => window.location.href = '/3d-hero'}
+                            onClick={() => router.push('/3d-hero')}
                             variant="ghost"
                             className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
                             bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
@@ -127,7 +129,7 @@ export function BackgroundPaths({
                             3D Cosmos
                         </Button>
                         <Button
-                            onClick={() => window.location.href = '/reative-orb'}
+                            onClick={() => router.push('/reative-orb')}
                             variant="ghost"
                             className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
                             bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
