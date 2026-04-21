@@ -576,12 +576,19 @@ export const HeroSection = () => {
       <style>{`
         .hero-container { position: relative; width: 100%; min-height: 100vh; background: #000; color: #fff; font-family: sans-serif; }
         .hero-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; }
-        .hero-content { position: relative; z-index: 2; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .hero-title { font-size: 6rem; font-weight: 800; letter-spacing: -0.05em; margin: 0; line-height: 1; text-transform: uppercase; background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.4) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-subtitle { font-size: 1.5rem; font-weight: 300; opacity: 0.8; margin-top: 1rem; }
+        .hero-content { position: relative; z-index: 2; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 1.5rem; }
+        .hero-title { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.05em; margin: 0; line-height: 1; text-transform: uppercase; background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.4) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: 1.1rem; font-weight: 300; opacity: 0.8; margin-top: 1rem; max-width: 600px; }
         .scroll-sections { position: relative; z-index: 2; display: flex; flex-direction: column; }
-        .content-section { width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .back-btn { position: fixed; top: 2rem; left: 2rem; z-index: 50; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.75rem 1.5rem; border-radius: 2rem; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px); }
+        .content-section { width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 1.5rem; }
+        .back-btn { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 50; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px); font-size: 0.9rem; }
+        
+        @media (min-width: 768px) {
+          .hero-title { font-size: 6rem; }
+          .hero-subtitle { font-size: 1.5rem; }
+          .back-btn { top: 2rem; left: 2rem; padding: 0.75rem 1.5rem; font-size: 1rem; }
+        }
+        
         .back-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
       `}</style>
 
