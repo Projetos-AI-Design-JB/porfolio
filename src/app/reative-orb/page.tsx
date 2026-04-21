@@ -57,7 +57,7 @@ export default function Home() {
           display: flex;
           align-items: center;
           justify-content: center;
-          transform: scale(0.9);
+          transform: scale(1);
           transform-origin: center center;
         }
         @media (max-width: 768px) {
