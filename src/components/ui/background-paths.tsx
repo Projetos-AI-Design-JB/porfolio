@@ -72,7 +72,7 @@ export function BackgroundPaths({
                     className="max-w-4xl mx-auto"
                 >
                     <h1
-                        className="font-syne text-8xl font-extrabold mb-8 tracking-tighter"
+                        className="font-syne text-5xl md:text-8xl font-extrabold mb-8 tracking-tighter"
                     >
                         {words.map((word, wordIndex) => (
                             <span
@@ -103,11 +103,11 @@ export function BackgroundPaths({
                         ))}
                     </h1>
 
-                    <div className="flex justify-center space-x-4">
+                    <div className="flex flex-wrap justify-center gap-4">
                         <Button
                             onClick={() => window.location.href = '/kanban'}
                             variant="ghost"
-                            className="font-syne rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md 
+                            className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
                             bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
                             text-black dark:text-white transition-all duration-300 
                             group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
@@ -118,7 +118,7 @@ export function BackgroundPaths({
                         <Button
                             onClick={() => window.location.href = '/3d-hero'}
                             variant="ghost"
-                            className="font-syne rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md 
+                            className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
                             bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
                             text-black dark:text-white transition-all duration-300 
                             group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
@@ -129,7 +129,7 @@ export function BackgroundPaths({
                         <Button
                             onClick={() => window.location.href = '/reative-orb'}
                             variant="ghost"
-                            className="font-syne rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md 
+                            className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
                             bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
                             text-black dark:text-white transition-all duration-300 
                             group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10

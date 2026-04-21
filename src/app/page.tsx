@@ -61,18 +61,18 @@ export default function LandingPage() {
         </motion.div>
 
         {/* Name and Titles */}
-        <motion.div variants={itemVariants} className="text-center mb-10">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-slate-500 font-syne">
+        <motion.div variants={itemVariants} className="text-center mb-10 px-4">
+          <h1 className="text-3xl md:text-6xl font-extrabold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-slate-500 font-syne">
             Julian Kezy
           </h1>
-          <div className="flex flex-wrap justify-center gap-3">
-            <span className="px-5 py-2 rounded-full bg-slate-800/40 border border-slate-700/50 text-xs font-semibold backdrop-blur-md text-slate-300 uppercase tracking-widest">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+            <span className="px-3 md:px-5 py-1.5 md:py-2 rounded-full bg-slate-800/40 border border-slate-700/50 text-[10px] md:text-xs font-semibold backdrop-blur-md text-slate-300 uppercase tracking-widest">
               Software Engineer
             </span>
-            <span className="px-5 py-2 rounded-full bg-slate-800/40 border border-slate-700/50 text-xs font-semibold backdrop-blur-md text-slate-300 uppercase tracking-widest">
+            <span className="px-3 md:px-5 py-1.5 md:py-2 rounded-full bg-slate-800/40 border border-slate-700/50 text-[10px] md:text-xs font-semibold backdrop-blur-md text-slate-300 uppercase tracking-widest">
               Solutions Architect
             </span>
-            <span className="px-5 py-2 rounded-full bg-slate-800/40 border border-slate-700/50 text-xs font-semibold backdrop-blur-md text-slate-300 uppercase tracking-widest">
+            <span className="px-3 md:px-5 py-1.5 md:py-2 rounded-full bg-slate-800/40 border border-slate-700/50 text-[10px] md:text-xs font-semibold backdrop-blur-md text-slate-300 uppercase tracking-widest">
               AI Designer
             </span>
           </div>
@@ -99,29 +99,29 @@ export default function LandingPage() {
             <motion.div 
               whileHover={{ scale: 1.01, backgroundColor: 'rgba(30, 41, 59, 0.6)' }}
               whileTap={{ scale: 0.99 }}
-              className="group relative w-full p-6 md:p-10 rounded-[2rem] bg-slate-800/30 border border-slate-700/40 backdrop-blur-xl flex items-center justify-between transition-all duration-500 shadow-2xl overflow-hidden"
+              className="group relative w-full p-5 md:p-10 rounded-[1.5rem] md:rounded-[2rem] bg-slate-800/30 border border-slate-700/40 backdrop-blur-xl flex items-center justify-between transition-all duration-500 shadow-2xl overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              <div className="flex items-center gap-8 relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-cyan-950/50 border border-cyan-800/50 flex items-center justify-center text-cyan-400 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.2)] transition-all duration-500">
-                  <ExternalLink size={28} />
+              <div className="flex items-center gap-4 md:gap-8 relative z-10">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-cyan-950/50 border border-cyan-800/50 flex items-center justify-center text-cyan-400 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.2)] transition-all duration-500">
+                  <ExternalLink size={20} className="md:w-7 md:h-7" />
                 </div>
                 <div className="text-left">
-                  <div className="flex items-center gap-3">
-                    <h3 className="text-2xl md:text-4xl font-bold text-white font-syne tracking-tight">Portfolio</h3>
-                    <span className="px-2.5 py-0.5 rounded-md bg-cyan-500/20 text-cyan-400 text-[10px] font-black uppercase tracking-tighter">
+                  <div className="flex items-center gap-2 md:gap-3">
+                    <h3 className="text-xl md:text-4xl font-bold text-white font-syne tracking-tight">Portfolio</h3>
+                    <span className="px-1.5 md:px-2.5 py-0.5 rounded-md bg-cyan-500/20 text-cyan-400 text-[8px] md:text-[10px] font-black uppercase tracking-tighter">
                       Live
                     </span>
                   </div>
-                  <p className="text-slate-400 text-sm md:text-lg mt-1 font-medium opacity-80 group-hover:opacity-100 transition-opacity">
-                    Explore my recent projects and case studies
+                  <p className="text-slate-400 text-xs md:text-lg mt-0.5 md:mt-1 font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+                    Explore my recent projects
                   </p>
                 </div>
               </div>
               
               <div className="text-slate-500 group-hover:text-white transition-all duration-500 translate-x-0 group-hover:translate-x-1 relative z-10">
-                <ChevronRight size={32} strokeWidth={1.5} />
+                <ChevronRight size={24} className="md:w-8 md:h-8" strokeWidth={1.5} />
               </div>
 
               {/* Decorative border glow */}
