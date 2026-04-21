@@ -12,13 +12,13 @@ export default function Home() {
       <style>{`
         .back-btn { 
           position: fixed; 
-          top: 2rem; 
-          left: 2rem; 
+          top: 1.5rem; 
+          left: 1.5rem; 
           z-index: 50; 
           background: rgba(255,255,255,0.1); 
           border: 1px solid rgba(255,255,255,0.2); 
           color: white; 
-          padding: 0.75rem 1.5rem; 
+          padding: 0.6rem 1.2rem; 
           border-radius: 2rem; 
           cursor: pointer; 
           transition: all 0.3s ease; 
@@ -28,6 +28,15 @@ export default function Home() {
           align-items: center;
           gap: 0.5rem;
           font-family: sans-serif;
+          font-size: 0.9rem;
+        }
+        @media (min-width: 768px) {
+          .back-btn {
+            top: 2rem;
+            left: 2rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+          }
         }
         .back-btn:hover { 
           background: rgba(255,255,255,0.2); 
@@ -39,6 +48,18 @@ export default function Home() {
           display: flex;
           align-items: center;
           justify-content: center;
+          overflow: hidden;
+        }
+        .spline-wrapper {
+          width: 100%;
+          height: 100%;
+          transform: scale(0.8);
+          transform-origin: center center;
+        }
+        @media (max-width: 768px) {
+          .spline-wrapper {
+            transform: scale(0.6) translateX(-10%);
+          }
         }
       `}</style>
       
@@ -47,9 +68,11 @@ export default function Home() {
       </a>
       
       <div className="spline-container">
-        <Spline
-          scene="https://prod.spline.design/M31FePNpu3XN1PtD/scene.splinecode" 
-        />
+        <div className="spline-wrapper">
+          <Spline
+            scene="https://prod.spline.design/M31FePNpu3XN1PtD/scene.splinecode" 
+          />
+        </div>
       </div>
     </main>
   );
