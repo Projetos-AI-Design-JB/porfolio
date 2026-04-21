@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -530,4 +531,8 @@
   .hero-badge { margin: 0 auto 1.5rem; }
   .hero-scene { height: 360px; }
   .projects-section { padding: 3rem 2rem; }
+}
+
+.font-syne {
+  font-family: 'Syne', sans-serif;
 }

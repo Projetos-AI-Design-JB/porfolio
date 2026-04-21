@@ -585,7 +585,7 @@ export const HeroSection = () => {
         .back-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
       `}</style>
 
-      <button className="back-btn" onClick={() => window.location.href = '/clientes'}>← Back to Portfolio</button>
+      <button className="back-btn" onClick={() => window.location.href = '/nova-home'}>← Back to Portfolio</button>
 
       <canvas ref={canvasRef} className="hero-canvas" />
       

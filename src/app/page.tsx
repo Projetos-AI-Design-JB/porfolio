@@ -36,7 +36,7 @@ export default function LandingPage() {
   }
 
   return (
-    <main className="relative min-h-screen w-full bg-[#020617] text-slate-100 flex flex-col items-center justify-center p-6 overflow-hidden font-sans selection:bg-cyan-500/30">
+    <main className="relative min-h-screen w-full bg-[#020617] text-slate-100 flex flex-col items-center justify-center p-6 overflow-hidden font-syne selection:bg-cyan-500/30">
       {/* Background Radial Gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_#164e63_0%,_transparent_50%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_#1e1b4b_0%,_transparent_50%)] pointer-events-none opacity-50" />
@@ -62,7 +62,7 @@ export default function LandingPage() {
 
         {/* Name and Titles */}
         <motion.div variants={itemVariants} className="text-center mb-10">
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-slate-500 font-heading">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-slate-500 font-syne">
             Julian Kezy
           </h1>
           <div className="flex flex-wrap justify-center gap-3">
@@ -92,7 +92,7 @@ export default function LandingPage() {
             </span>
           </div>
           
-          <Link href="/clientes">
+          <Link href="/nova-home">
             <motion.div 
               whileHover={{ scale: 1.01, backgroundColor: 'rgba(30, 41, 59, 0.6)' }}
               whileTap={{ scale: 0.99 }}
@@ -106,7 +106,7 @@ export default function LandingPage() {
                 </div>
                 <div className="text-left">
                   <div className="flex items-center gap-3">
-                    <h3 className="text-2xl md:text-4xl font-bold text-white font-heading tracking-tight">Portfolio</h3>
+                    <h3 className="text-2xl md:text-4xl font-bold text-white font-syne tracking-tight">Portfolio</h3>
                     <span className="px-2.5 py-0.5 rounded-md bg-cyan-500/20 text-cyan-400 text-[10px] font-black uppercase tracking-tighter">
                       Live
                     </span>
