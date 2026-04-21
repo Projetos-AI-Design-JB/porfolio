@@ -51,7 +51,7 @@ export default function LandingPage() {
         <motion.div variants={itemVariants} className="relative mb-8">
           <div className="w-32 h-32 md:w-40 md:h-40 rounded-full p-1.5 ring-4 ring-cyan-500/30 overflow-hidden bg-slate-900 border-2 border-cyan-400/80 shadow-[0_0_50px_rgba(6,182,212,0.15)]">
             <img 
-              src="/JB-vibecode.png" 
+              src="/porfolio/JB-vibecode.png" 
               alt="Julian Kezy"
               className="w-full h-full object-cover rounded-full"
             />
