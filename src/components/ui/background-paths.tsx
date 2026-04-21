@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function FloatingPaths({ position }: { position: number }) {
     const paths = Array.from({ length: 36 }, (_, i) => ({
@@ -57,7 +57,6 @@ export function BackgroundPaths({
     title?: string;
 }) {
     const words = title.split(" ");
-    const router = useRouter();
 
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white dark:bg-black">
@@ -106,39 +105,42 @@ export function BackgroundPaths({
                     </h1>
 
                     <div className="flex flex-wrap justify-center gap-4">
-                        <Button
-                            onClick={() => router.push('/kanban')}
-                            variant="ghost"
-                            className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
-                            bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                            text-black dark:text-white transition-all duration-300 
-                            group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                            hover:shadow-md dark:hover:shadow-neutral-800/50"
-                        >
-                            Kanban
-                        </Button>
-                        <Button
-                            onClick={() => router.push('/3d-hero')}
-                            variant="ghost"
-                            className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
-                            bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                            text-black dark:text-white transition-all duration-300 
-                            group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                            hover:shadow-md dark:hover:shadow-neutral-800/50"
-                        >
-                            3D Cosmos
-                        </Button>
-                        <Button
-                            onClick={() => router.push('/reative-orb')}
-                            variant="ghost"
-                            className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
-                            bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                            text-black dark:text-white transition-all duration-300 
-                            group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                            hover:shadow-md dark:hover:shadow-neutral-800/50"
-                        >
-                            Orb
-                        </Button>
+                        <Link href="/kanban">
+                            <Button
+                                variant="ghost"
+                                className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
+                                text-black dark:text-white transition-all duration-300 
+                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
+                                hover:shadow-md dark:hover:shadow-neutral-800/50"
+                            >
+                                Kanban
+                            </Button>
+                        </Link>
+                        <Link href="/3d-hero">
+                            <Button
+                                variant="ghost"
+                                className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
+                                text-black dark:text-white transition-all duration-300 
+                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
+                                hover:shadow-md dark:hover:shadow-neutral-800/50"
+                            >
+                                3D Cosmos
+                            </Button>
+                        </Link>
+                        <Link href="/reative-orb">
+                            <Button
+                                variant="ghost"
+                                className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
+                                text-black dark:text-white transition-all duration-300 
+                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
+                                hover:shadow-md dark:hover:shadow-neutral-800/50"
+                            >
+                                Orb
+                            </Button>
+                        </Link>
                     </div>
                 </motion.div>
             </div>
