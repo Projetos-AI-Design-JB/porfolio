@@ -72,6 +72,9 @@ export default function LandingPage() {
             <span className="px-5 py-2 rounded-full bg-slate-800/40 border border-slate-700/50 text-xs font-semibold backdrop-blur-md text-slate-300 uppercase tracking-widest">
               Solutions Architect
             </span>
+            <span className="px-5 py-2 rounded-full bg-slate-800/40 border border-slate-700/50 text-xs font-semibold backdrop-blur-md text-slate-300 uppercase tracking-widest">
+              AI Designer
+            </span>
           </div>
         </motion.div>
 
