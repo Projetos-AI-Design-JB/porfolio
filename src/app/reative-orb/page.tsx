@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from 'next/dynamic';
+import { ClientOnly } from "@/components/client-only";
 
 const Spline = dynamic(() => import('@splinetool/react-spline'), {
   ssr: false,
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <main className="relative w-full h-screen overflow-hidden bg-black">
       <style>{`
+        /* ... estilos mantidos ... */
         .back-btn { 
           position: fixed; 
           top: 1.5rem; 
@@ -75,9 +77,11 @@ export default function Home() {
       
       <div className="spline-container">
         <div className="spline-wrapper">
-          <Spline
-            scene="https://prod.spline.design/M31FePNpu3XN1PtD/scene.splinecode" 
-          />
+          <ClientOnly>
+            <Spline
+              scene="https://prod.spline.design/M31FePNpu3XN1PtD/scene.splinecode" 
+            />
+          </ClientOnly>
         </div>
       </div>
     </main>
