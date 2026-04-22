@@ -70,8 +70,8 @@ export default function HorizontalGallery() {
       <div ref={triggerRef}>
         <div ref={sectionRef} className="h-screen w-[400vw] flex flex-row relative bg-black">
           {PROJECTS.map((project) => (
-            <div key={project.id} className="gallery-item h-screen w-screen flex justify-center items-center p-10 md:p-32">
-              <div className="relative w-full h-full max-w-5xl max-h-[60vh] md:max-h-[70vh] group overflow-hidden border border-white/5 shadow-2xl bg-neutral-900">
+            <div key={project.id} className="gallery-item h-screen w-screen flex justify-center items-center p-4 md:p-32">
+              <div className="relative w-full h-full max-w-5xl max-h-[70vh] md:max-h-[70vh] group overflow-hidden border border-white/5 shadow-2xl bg-neutral-900 rounded-2xl md:rounded-none">
                 <Image
                   src={project.img}
                   alt={project.title}
@@ -80,15 +80,15 @@ export default function HorizontalGallery() {
                   quality={100}
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
-                <div className="absolute bottom-20 left-20 text-white z-20">
-                  <p className="text-xs uppercase tracking-[0.8em] text-white/40 mb-6 font-light">{project.category}</p>
-                  <h3 className="text-7xl md:text-9xl font-black uppercase tracking-tighter leading-none">{project.title}</h3>
-                  <div className="mt-12 flex items-center gap-6 group/btn cursor-pointer">
-                      <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover/btn:bg-white group-hover/btn:text-black transition-all duration-500">
-                          <span className="text-xl">→</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
+                <div className="absolute bottom-8 left-6 md:bottom-20 md:left-20 text-white z-20 pr-6">
+                  <p className="text-[10px] md:text-xs uppercase tracking-[0.8em] text-white/40 mb-3 md:mb-6 font-light">{project.category}</p>
+                  <h3 className="text-3xl md:text-9xl font-black uppercase tracking-tighter leading-none break-words max-w-[80vw] md:max-w-none">{project.title}</h3>
+                  <div className="mt-6 md:mt-12 flex items-center gap-4 md:gap-6 group/btn cursor-pointer">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center group-hover/btn:bg-white group-hover/btn:text-black transition-all duration-500">
+                          <span className="text-lg md:text-xl">→</span>
                       </div>
-                      <span className="text-xs uppercase tracking-[0.3em] text-white/60 group-hover/btn:text-white transition-colors">View Case Study</span>
+                      <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/60 group-hover/btn:text-white transition-colors">View Case Study</span>
                   </div>
                 </div>
               </div>
