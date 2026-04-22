@@ -12,15 +12,15 @@ export default function Footer() {
         
         <div className="pt-6">
           {/* Force white color and premium styling */}
-          <Link 
-            href="/" 
+          <a 
+            href="/porfolio/" 
             style={{ color: 'white', textDecoration: 'none' }}
             className="inline-flex items-center gap-3 px-10 py-4 bg-white/5 border border-white/20 rounded-full backdrop-blur-xl hover:bg-white/10 hover:scale-105 transition-all duration-500 group shadow-2xl"
           >
             <span className="text-white !text-white text-sm font-semibold tracking-tighter flex items-center gap-3">
               <span className="text-xl">←</span> Back to Portfolio
             </span>
-          </Link>
+          </a>
         </div>
       </div>
 
