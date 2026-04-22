@@ -2,11 +2,10 @@
 
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, CurveModifier, useScroll, ScrollControls } from '@react-three/drei';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import * as THREE from 'three';
 
-function SpiralGeometry() {
-  const scroll = useScroll();
+function SpiralGeometry({ scrollYProgress }: { scrollYProgress: any }) {
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Mesh>(null);
 
@@ -33,13 +32,13 @@ function SpiralGeometry() {
 
   useFrame((state, delta) => {
     if (groupRef.current) {
-      // Rotação contínua e reação ao scroll
-      const offset = scroll.offset;
+      // Reação ao scroll real da página
+      const offset = scrollYProgress.get();
       groupRef.current.rotation.y += delta * 0.2;
       groupRef.current.rotation.y += offset * 0.05;
       
-      // Movimento suave vertical baseado no scroll
-      groupRef.current.position.y = -offset * 10 + 5;
+      // Movimento suave vertical baseado no scroll real
+      groupRef.current.position.y = -offset * 12 + 6;
     }
     
     if (meshRef.current) {
@@ -79,14 +78,15 @@ function SpiralGeometry() {
 }
 
 export function ScrollSpiral() {
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
   return (
     <div className="fixed inset-0 pointer-events-none z-0">
       <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} color="#3b82f6" />
-        <ScrollControls pages={4} damping={0.1}>
-          <SpiralGeometry />
-        </ScrollControls>
+        <SpiralGeometry scrollYProgress={smoothProgress} />
       </Canvas>
     </div>
   );
