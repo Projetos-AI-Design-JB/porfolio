@@ -79,7 +79,7 @@ export default function LandingPage() {
         <motion.div variants={itemVariants} className="flex gap-4 mb-16">
           <SocialIcon 
             icon={<img src="/porfolio/logo-upwork-button.png" alt="Upwork" className="w-6 h-6 object-contain" />} 
-            href="#" 
+            href="https://www.upwork.com/freelancers/~01c619e33efa8638d3" 
           />
           <SocialIcon icon={<FaLinkedin size={22} />} href="https://www.linkedin.com/in/juliano-bianchesi" />
           <SocialIcon icon={<FaWhatsapp size={22} />} href="#" highlight />
