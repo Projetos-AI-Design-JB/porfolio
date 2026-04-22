@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 function FloatingPaths({ position }: { position: number }) {
     const paths = Array.from({ length: 36 }, (_, i) => ({
@@ -105,7 +104,7 @@ export function BackgroundPaths({
                     </h1>
 
                     <div className="flex flex-wrap justify-center gap-4">
-                        <Link href="/kanban">
+                        <a href="/porfolio/kanban/">
                             <Button
                                 variant="ghost"
                                 className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
@@ -116,8 +115,8 @@ export function BackgroundPaths({
                             >
                                 Kanban
                             </Button>
-                        </Link>
-                        <Link href="/3d-hero">
+                        </a>
+                        <a href="/porfolio/3d-hero/">
                             <Button
                                 variant="ghost"
                                 className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
@@ -128,8 +127,8 @@ export function BackgroundPaths({
                             >
                                 3D Cosmos
                             </Button>
-                        </Link>
-                        <Link href="/reative-orb">
+                        </a>
+                        <a href="/porfolio/reative-orb/">
                             <Button
                                 variant="ghost"
                                 className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
@@ -140,7 +139,7 @@ export function BackgroundPaths({
                             >
                                 Orb
                             </Button>
-                        </Link>
+                        </a>
                     </div>
                 </motion.div>
             </div>
