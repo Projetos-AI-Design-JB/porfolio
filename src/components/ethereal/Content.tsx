@@ -64,7 +64,7 @@ export default function Content() {
           />
           {/* Subtle Parallax Label */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-             <div className="text-white/20 text-[20vw] font-black uppercase tracking-[-0.05em] translate-y-[20%]">
+             <div className="text-white/20 text-[15vw] md:text-[20vw] font-black uppercase tracking-[-0.05em] translate-y-[20%]">
                 CORE
              </div>
           </div>
@@ -74,7 +74,7 @@ export default function Content() {
       </div>
 
       {/* Frame Decorations */}
-      <div className="absolute inset-0 z-20 pointer-events-none border-[1px] border-white/5 m-10" />
+      <div className="absolute inset-0 z-20 pointer-events-none border-[1px] border-white/5 m-4 md:m-10" />
     </section>
   );
 }
