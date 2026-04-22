@@ -56,7 +56,7 @@ export default function Content() {
       >
         <div ref={innerImgRef} className="absolute inset-0">
           <Image 
-            src="/ethereal/images/landscape.png" 
+            src="/porfolio/ethereal/images/landscape.png" 
             alt="Cinematic Landscape" 
             fill 
             className="object-cover"

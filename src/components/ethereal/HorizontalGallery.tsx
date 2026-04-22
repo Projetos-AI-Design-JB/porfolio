@@ -8,10 +8,10 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const PROJECTS = [
-  { id: 1, title: "Void Architect", category: "Spatial Design", img: "/ethereal/images/proj1.png" },
-  { id: 2, title: "Nebula Pulse", category: "Interactive", img: "/ethereal/images/proj2.png" },
-  { id: 3, title: "Obsidian Flow", category: "Motion", img: "/ethereal/images/proj3.png" },
-  { id: 4, title: "Crystal Soul", category: "Experience", img: "/ethereal/images/proj4.png" },
+  { id: 1, title: "Void Architect", category: "Spatial Design", img: "/porfolio/ethereal/images/proj1.png" },
+  { id: 2, title: "Nebula Pulse", category: "Interactive", img: "/porfolio/ethereal/images/proj2.png" },
+  { id: 3, title: "Obsidian Flow", category: "Motion", img: "/porfolio/ethereal/images/proj3.png" },
+  { id: 4, title: "Crystal Soul", category: "Experience", img: "/porfolio/ethereal/images/proj4.png" },
 ];
 
 export default function HorizontalGallery() {
