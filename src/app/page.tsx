@@ -11,6 +11,7 @@ import {
   FaLinkedin, 
   FaWhatsapp 
 } from 'react-icons/fa'
+import { SiUpwork } from 'react-icons/si'
 
 export default function LandingPage() {
   const containerVariants = {
@@ -78,7 +79,7 @@ export default function LandingPage() {
         {/* Social Icons */}
         <motion.div variants={itemVariants} className="flex gap-4 mb-16">
           <SocialIcon 
-            icon={<img src="/porfolio/logo-upwork-button.png" alt="Upwork" className="w-6 h-6 object-contain" />} 
+            icon={<SiUpwork size={20} />} 
             href="https://www.upwork.com/freelancers/~01c619e33efa8638d3" 
           />
           <SocialIcon icon={<FaLinkedin size={22} />} href="https://www.linkedin.com/in/juliano-bianchesi" />
@@ -141,6 +142,8 @@ function SocialIcon({ icon, href, highlight = false }: { icon: React.ReactNode, 
   return (
     <motion.a
       href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       whileHover={{ y: -4, scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       className={`
