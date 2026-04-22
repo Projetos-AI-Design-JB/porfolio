@@ -45,7 +45,7 @@ export default function Hero() {
       {/* Background Layer (Deepest) */}
       <div ref={bgRef} className="absolute inset-0 z-0">
          <Image
-            src="/ethereal/images/bg.png"
+            src="/images/bg.png"
             alt="Cosmic Cathedral"
             fill
             className="object-cover opacity-40"
@@ -74,7 +74,7 @@ export default function Hero() {
       >
         <div className="relative w-full h-[140%] -bottom-[20%]">
           <Image
-            src="/ethereal/images/hero.png"
+            src="/images/hero.png"
             alt="Hero Character"
             fill
             className="object-contain object-bottom filter brightness-50"
@@ -89,7 +89,7 @@ export default function Hero() {
         className="absolute -left-[10vw] -bottom-[10vh] z-30 w-[50vw] aspect-square pointer-events-none"
       >
         <Image
-          src="/ethereal/images/statue.png"
+          src="/images/statue.png"
           alt="Foreground Statue"
           fill
           className="object-contain filter brightness-110 contrast-125 drop-shadow-[0_0_100px_rgba(0,0,0,1)]"
