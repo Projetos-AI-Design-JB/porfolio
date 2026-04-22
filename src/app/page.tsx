@@ -36,8 +36,8 @@ export default function LandingPage() {
   return (
     <main className="relative min-h-screen w-full bg-[#020617] text-slate-100 flex flex-col items-center justify-center p-6 overflow-hidden font-syne selection:bg-cyan-500/30">
       {/* Background Radial Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_#164e63_0%,_transparent_50%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_#1e1b4b_0%,_transparent_50%)] pointer-events-none opacity-50" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_#1f2937_0%,_transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_#111827_0%,_transparent_50%)] pointer-events-none opacity-50" />
 
       <motion.div 
         variants={containerVariants}
