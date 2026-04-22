@@ -581,7 +581,7 @@ export const HeroSection = () => {
         .hero-subtitle { font-size: 1.1rem; font-weight: 300; opacity: 0.8; margin-top: 1rem; max-width: 600px; }
         .scroll-sections { position: relative; z-index: 2; display: flex; flex-direction: column; }
         .content-section { width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 1.5rem; }
-        .back-btn { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 50; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px); font-size: 0.9rem; }
+        .back-btn { display: inline-block; text-decoration: none; position: fixed; top: 1.5rem; left: 1.5rem; z-index: 50; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px); font-size: 0.9rem; }
         
         @media (min-width: 768px) {
           .hero-title { font-size: 6rem; }
@@ -592,7 +592,7 @@ export const HeroSection = () => {
         .back-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
       `}</style>
 
-      <button className="back-btn" onClick={() => window.location.href = '/nova-home'}>← Back to Portfolio</button>
+      <a className="back-btn" href="/porfolio/nova-home/">← Back to Portfolio</a>
 
       <canvas ref={canvasRef} className="hero-canvas" />
       

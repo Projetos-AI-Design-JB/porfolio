@@ -68,9 +68,9 @@ export default function Home() {
         }
       `}</style>
       
-      <Link href="/clientes" className="back-btn">
+      <a href="/porfolio/nova-home/" className="back-btn">
         <span>←</span> Back to Portfolio
-      </Link>
+      </a>
       
       <div className="spline-container">
         <div className="spline-wrapper">
