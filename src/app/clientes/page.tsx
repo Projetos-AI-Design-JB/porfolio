@@ -56,7 +56,15 @@ export default function ClientesPage() {
         url: '/reative-orb',
         image: ''
       }
-      setProjects([kanbanProject, backgroundPathsProject, heroProject, reactiveOrbProject, ...(json.data ?? [])])
+      const salesPageProject = {
+        id: 995,
+        title: 'Elite Sales Landing Page',
+        description: 'Conversion-optimized sales page for software courses. Features 3D immersive backgrounds, smooth scroll reveals, and high-end glassmorphism components.',
+        tech: ['Next.js', 'Spline', 'Framer Motion', 'Tailwind'],
+        url: '/vendas-software',
+        image: ''
+      }
+      setProjects([kanbanProject, backgroundPathsProject, heroProject, reactiveOrbProject, salesPageProject, ...(json.data ?? [])])
       setLoading(false)
     }).catch(() => setLoading(false))
   }, [])
