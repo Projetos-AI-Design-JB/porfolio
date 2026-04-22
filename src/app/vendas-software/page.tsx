@@ -127,23 +127,23 @@ export default function VendasSoftwarePage() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="p-12 md:p-20 rounded-[3rem] bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 backdrop-blur-xl"
+            className="p-8 md:p-20 rounded-[2.5rem] md:rounded-[3rem] bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 backdrop-blur-xl"
           >
-            <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">PRONTO PARA O SEU PRÓXIMO <span className="text-cyan-400">NÍVEL?</span></h2>
+            <h2 className="text-2xl md:text-6xl font-black mb-8 leading-tight uppercase tracking-tighter md:tracking-normal">PRONTO PARA O SEU PRÓXIMO <span className="text-cyan-400">NÍVEL?</span></h2>
             <div className="flex flex-col items-center gap-6">
-              <div className="flex -space-x-3 mb-4 scale-90 md:scale-100">
+              <div className="flex -space-x-3 mb-4 scale-75 md:scale-100">
                 {[1,2,3,4,5].map(i => (
                   <div key={i} className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-[#020617] bg-slate-800 overflow-hidden">
                     <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="aluno" />
                   </div>
                 ))}
               </div>
-              <p className="text-slate-400 mb-6 font-medium text-sm md:text-base">+1.500 desenvolvedores já estão no futuro.</p>
-              <Button size="lg" className="bg-white text-black hover:bg-slate-200 font-bold rounded-2xl px-4 md:px-12 h-14 md:h-16 text-[13px] md:text-xl w-full md:w-auto uppercase tracking-tighter md:tracking-normal">
+              <p className="text-slate-400 mb-4 font-medium text-[10px] md:text-base">+1.500 desenvolvedores já estão no futuro.</p>
+              <Button size="lg" className="bg-white text-black hover:bg-slate-200 font-bold rounded-2xl px-6 md:px-12 h-14 md:h-16 text-[12px] md:text-xl w-full md:w-auto uppercase tracking-tighter md:tracking-normal shadow-xl">
                 GARANTIR ACESSO IMEDIATO
               </Button>
-              <div className="flex items-center gap-2 text-slate-500 text-[10px] md:text-sm font-bold">
-                <ShieldCheck size={18} /> Pagamento 100% Seguro • 7 Dias de Garantia
+              <div className="flex items-center gap-2 text-slate-500 text-[9px] md:text-sm font-bold">
+                <ShieldCheck size={16} /> Pagamento 100% Seguro • 7 Dias de Garantia
               </div>
             </div>
           </motion.div>
