@@ -56,15 +56,7 @@ export default function ClientesPage() {
         url: '/reative-orb',
         image: ''
       }
-      const salesPageProject = {
-        id: 995,
-        title: 'Elite Sales Landing Page',
-        description: 'Conversion-optimized sales page for software courses. Features 3D immersive backgrounds, smooth scroll reveals, and high-end glassmorphism components.',
-        tech: ['Next.js', 'Spline', 'Framer Motion', 'Tailwind'],
-        url: '/vendas-software',
-        image: ''
-      }
-      setProjects([kanbanProject, backgroundPathsProject, heroProject, reactiveOrbProject, salesPageProject, ...(json.data ?? [])])
+      setProjects([kanbanProject, backgroundPathsProject, heroProject, reactiveOrbProject, ...(json.data ?? [])])
       setLoading(false)
     }).catch(() => setLoading(false))
   }, [])
@@ -78,7 +70,7 @@ export default function ClientesPage() {
 
     const subject = encodeURIComponent(`New Project Inquiry from ${name}`)
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject Details:\n${message}`)
-    
+
     window.location.href = `mailto:jb.mktdigital@gmail.com?subject=${subject}&body=${body}`
 
     setSent(true)
