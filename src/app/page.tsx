@@ -8,9 +8,6 @@ import {
   ChevronRight
 } from 'lucide-react'
 import { 
-  FaInstagram, 
-  FaTiktok, 
-  FaYoutube, 
   FaLinkedin, 
   FaWhatsapp 
 } from 'react-icons/fa'
@@ -80,20 +77,16 @@ export default function LandingPage() {
 
         {/* Social Icons */}
         <motion.div variants={itemVariants} className="flex gap-4 mb-16">
-          <SocialIcon icon={<FaInstagram size={22} />} href="#" />
-          <SocialIcon icon={<FaTiktok size={20} />} href="#" />
-          <SocialIcon icon={<FaYoutube size={22} />} href="#" />
-          <SocialIcon icon={<FaLinkedin size={22} />} href="#" />
+          <SocialIcon 
+            icon={<img src="/porfolio/logo-upwork-button.png" alt="Upwork" className="w-6 h-6 object-contain" />} 
+            href="#" 
+          />
+          <SocialIcon icon={<FaLinkedin size={22} />} href="https://www.linkedin.com/in/juliano-bianchesi" />
           <SocialIcon icon={<FaWhatsapp size={22} />} href="#" highlight />
         </motion.div>
 
         {/* Action Button Section */}
         <motion.div variants={itemVariants} className="w-full">
-          <div className="text-center mb-6">
-            <span className="text-[10px] font-bold tracking-[0.3em] text-cyan-500/80 uppercase">
-              Main Access
-            </span>
-          </div>
           
           <Link href="/nova-home">
             <motion.div 
