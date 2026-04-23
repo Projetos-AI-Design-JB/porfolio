@@ -47,13 +47,13 @@ function useCard() {
  * Você pode usar links externos (https://...) ou caminhos locais (/gallery/foto.webp)
  */
 const GALLERY_CARDS: Card[] = [
-  { id: "1", imageUrl: "/gallery/01.webp", alt: "AI Art 01", title: "Stellar Creation 01" },
-  { id: "2", imageUrl: "/gallery/02.webp", alt: "AI Art 02", title: "Stellar Creation 02" },
-  { id: "3", imageUrl: "/gallery/03.webp", alt: "AI Art 03", title: "Stellar Creation 03" },
-  { id: "4", imageUrl: "/gallery/04.webp", alt: "AI Art 04", title: "Stellar Creation 04" },
-  { id: "6", imageUrl: "/gallery/06.webp", alt: "AI Art 06", title: "Stellar Creation 06" },
-  { id: "7", imageUrl: "/gallery/07.webp", alt: "AI Art 07", title: "Stellar Creation 07" },
-  { id: "8", imageUrl: "/gallery/08.webp", alt: "AI Art 08", title: "Stellar Creation 08" },
+  { id: "1", imageUrl: "/porfolio/gallery/01.webp", alt: "AI Art 01", title: "Stellar Creation 01" },
+  { id: "2", imageUrl: "/porfolio/gallery/02.webp", alt: "AI Art 02", title: "Stellar Creation 02" },
+  { id: "3", imageUrl: "/porfolio/gallery/03.webp", alt: "AI Art 03", title: "Stellar Creation 03" },
+  { id: "4", imageUrl: "/porfolio/gallery/04.webp", alt: "AI Art 04", title: "Stellar Creation 04" },
+  { id: "6", imageUrl: "/porfolio/gallery/06.webp", alt: "AI Art 06", title: "Stellar Creation 06" },
+  { id: "7", imageUrl: "/porfolio/gallery/07.webp", alt: "AI Art 07", title: "Stellar Creation 07" },
+  { id: "8", imageUrl: "/porfolio/gallery/08.webp", alt: "AI Art 08", title: "Stellar Creation 08" },
 ]
 
 function CardProvider({ children }: { children: React.ReactNode }) {
