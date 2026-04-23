@@ -176,6 +176,18 @@ export function BackgroundPaths({
                                 Legendary LP
                             </Button>
                         </a>
+                        <a href="https://projetos-ai-design-jb.github.io/porfolio/gallery/">
+                            <Button
+                                variant="ghost"
+                                className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                bg-cyan-500/10 hover:bg-cyan-500/20 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 
+                                text-cyan-600 dark:text-cyan-400 transition-all duration-300 
+                                group-hover:-translate-y-0.5 border border-cyan-500/20
+                                hover:shadow-lg hover:shadow-cyan-500/20 shadow-md"
+                            >
+                                AI ART
+                            </Button>
+                        </a>
                     </div>
                 </motion.div>
             </div>

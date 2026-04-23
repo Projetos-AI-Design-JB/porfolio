@@ -13,6 +13,8 @@ import {
 } from 'react-icons/fa'
 import { SiUpwork } from 'react-icons/si'
 
+import { ParticleWaves } from '@/components/ui/particle-waves'
+
 export default function LandingPage() {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -34,10 +36,8 @@ export default function LandingPage() {
   }
 
   return (
-    <main className="relative min-h-screen w-full bg-[#020617] text-slate-100 flex flex-col items-center justify-center p-6 overflow-hidden font-syne selection:bg-cyan-500/30">
-      {/* Background Radial Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_#1f2937_0%,_transparent_50%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_#111827_0%,_transparent_50%)] pointer-events-none opacity-50" />
+    <main className="relative min-h-screen w-full text-slate-100 flex flex-col items-center justify-center p-6 overflow-hidden font-syne selection:bg-cyan-500/30">
+      <ParticleWaves />
 
       <motion.div 
         variants={containerVariants}
@@ -88,27 +88,26 @@ export default function LandingPage() {
 
         {/* Action Button Section */}
         <motion.div variants={itemVariants} className="w-full">
-          
           <Link href="/nova-home">
             <motion.div 
               whileHover={{ scale: 1.01, backgroundColor: 'rgba(30, 41, 59, 0.6)' }}
               whileTap={{ scale: 0.99 }}
-              className="group relative w-full p-5 md:p-10 rounded-[1.5rem] md:rounded-[2rem] bg-slate-800/30 border border-slate-700/40 backdrop-blur-xl flex items-center justify-between transition-all duration-500 shadow-2xl overflow-hidden"
+              className="group relative w-full p-5 md:p-8 rounded-[1.5rem] md:rounded-[2rem] bg-slate-800/30 border border-slate-700/40 backdrop-blur-xl flex items-center justify-between transition-all duration-500 shadow-2xl overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              <div className="flex items-center gap-4 md:gap-8 relative z-10">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-cyan-950/50 border border-cyan-800/50 flex items-center justify-center text-cyan-400 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.2)] transition-all duration-500">
-                  <ExternalLink size={20} className="md:w-7 md:h-7" />
+              <div className="flex items-center gap-4 md:gap-6 relative z-10">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-cyan-950/50 border border-cyan-800/50 flex items-center justify-center text-cyan-400 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.2)] transition-all duration-500">
+                  <ExternalLink size={20} className="md:w-6 md:h-6" />
                 </div>
                 <div className="text-left">
                   <div className="flex items-center gap-2 md:gap-3">
-                    <h3 className="text-xl md:text-4xl font-bold text-white font-syne tracking-tight">Portfolio</h3>
+                    <h3 className="text-xl md:text-3xl font-bold text-white font-syne tracking-tight">Portfolio</h3>
                     <span className="px-1.5 md:px-2.5 py-0.5 rounded-md bg-cyan-500/20 text-cyan-400 text-[8px] md:text-[10px] font-black uppercase tracking-tighter">
                       Live
                     </span>
                   </div>
-                  <p className="text-slate-400 text-xs md:text-lg mt-0.5 md:mt-1 font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+                  <p className="text-slate-400 text-xs md:text-base mt-0.5 md:mt-1 font-medium opacity-80 group-hover:opacity-100 transition-opacity">
                     Explore my recent projects
                   </p>
                 </div>
@@ -130,7 +129,7 @@ export default function LandingPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="mt-auto pt-16 text-slate-600 text-[10px] font-bold tracking-[0.4em] uppercase"
+        className="mt-8 text-slate-600 text-[10px] font-bold tracking-[0.4em] uppercase text-center"
       >
         © 2026 Crafted by Julian Kezy
       </motion.div>
