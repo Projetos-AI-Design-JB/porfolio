@@ -129,7 +129,7 @@ export default function LandingPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="mt-8 text-slate-600 text-[10px] font-bold tracking-[0.4em] uppercase text-center"
+        className="relative z-10 mt-12 text-slate-500 text-[9px] md:text-[10px] font-bold tracking-[0.4em] uppercase text-center opacity-60 hover:opacity-100 transition-opacity"
       >
         © 2026 Crafted by Julian Kezy
       </motion.div>
