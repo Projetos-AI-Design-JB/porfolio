@@ -44,16 +44,19 @@ function useCard() {
 
 /**
  * CONFIGURAÇÃO DA GALERIA
- * Você pode usar links externos (https://...) ou caminhos locais (/gallery/foto.webp)
+ * O código detecta automaticamente se está no GitHub Pages ou Local
  */
+const isProd = typeof window !== "undefined" && window.location.hostname !== "localhost"
+const base = isProd ? "/porfolio" : ""
+
 const GALLERY_CARDS: Card[] = [
-  { id: "1", imageUrl: "/porfolio/gallery/01.webp", alt: "AI Art 01", title: "Stellar Creation 01" },
-  { id: "2", imageUrl: "/porfolio/gallery/02.webp", alt: "AI Art 02", title: "Stellar Creation 02" },
-  { id: "3", imageUrl: "/porfolio/gallery/03.webp", alt: "AI Art 03", title: "Stellar Creation 03" },
-  { id: "4", imageUrl: "/porfolio/gallery/04.webp", alt: "AI Art 04", title: "Stellar Creation 04" },
-  { id: "6", imageUrl: "/porfolio/gallery/06.webp", alt: "AI Art 06", title: "Stellar Creation 06" },
-  { id: "7", imageUrl: "/porfolio/gallery/07.webp", alt: "AI Art 07", title: "Stellar Creation 07" },
-  { id: "8", imageUrl: "/porfolio/gallery/08.webp", alt: "AI Art 08", title: "Stellar Creation 08" },
+  { id: "1", imageUrl: `${base}/gallery/01.webp`, alt: "AI Art 01", title: "Stellar Creation 01" },
+  { id: "2", imageUrl: `${base}/gallery/02.webp`, alt: "AI Art 02", title: "Stellar Creation 02" },
+  { id: "3", imageUrl: `${base}/gallery/03.webp`, alt: "AI Art 03", title: "Stellar Creation 03" },
+  { id: "4", imageUrl: `${base}/gallery/04.webp`, alt: "AI Art 04", title: "Stellar Creation 04" },
+  { id: "6", imageUrl: `${base}/gallery/06.webp`, alt: "AI Art 06", title: "Stellar Creation 06" },
+  { id: "7", imageUrl: `${base}/gallery/07.webp`, alt: "AI Art 07", title: "Stellar Creation 07" },
+  { id: "8", imageUrl: `${base}/gallery/08.webp`, alt: "AI Art 08", title: "Stellar Creation 08" },
 ]
 
 function CardProvider({ children }: { children: React.ReactNode }) {
@@ -259,28 +262,7 @@ function CardModal() {
               />
             </div>
 
-            <h3 className="text-white text-lg font-semibold mb-4 text-center">{selectedCard.title}</h3>
-
-            <div className="flex gap-2">
-              <button
-                type="button"
-                className="inline-flex h-9 flex-1 items-center justify-center rounded-lg text-base font-medium text-black outline-none transition duration-300 ease-out hover:opacity-80 active:scale-[0.97]"
-                style={{ backgroundColor: "#31b8c6" }}
-              >
-                <div className="flex items-center gap-1.5">
-                  <Download className="h-4 w-4" strokeWidth={1.8} />
-                  <span>Download</span>
-                </div>
-              </button>
-              <button
-                type="button"
-                onClick={toggleFavorite}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-black outline-none transition duration-300 ease-out hover:opacity-80 active:scale-[0.97]"
-                style={{ backgroundColor: "#31b8c6" }}
-              >
-                <Heart className="h-4 w-4" strokeWidth={1.8} fill={isFavorited ? "currentColor" : "none"} />
-              </button>
-            </div>
+            <h3 className="text-white text-xl font-bold font-syne text-center uppercase tracking-widest mt-2">{selectedCard.title}</h3>
           </div>
         </div>
       </div>
