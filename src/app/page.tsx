@@ -3,7 +3,6 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { FloatingNav } from '@/components/ui/floating-nav'
 import { SidebarCards } from '@/components/ui/sidebar-cards'
 import { SoundWaveBg } from '@/components/ui/sound-wave-bg'
 import '../app/home.css'
@@ -21,8 +20,6 @@ export default function HomePage() {
       {/* ── Sound Wave Background ──────────────────────────── */}
       <SoundWaveBg />
 
-      {/* ── Navigation ─────────────────────────────────────── */}
-      <FloatingNav />
 
       {/* ── Hero ───────────────────────────────────────────── */}
       <section className="home-hero" aria-label="Hero section">
