@@ -20,3 +20,7 @@
 ## Deployment & CI/CD
 - **Hosting:** GitHub Pages.
 - **CI/CD:** GitHub Actions (official Next.js workflow).
+
+## AI & Context (MCP)
+- **Context7:** Mandatory for real-time documentation retrieval.
+  - **Rule:** Before implementing any new feature or using a third-party library (e.g., GSAP, Framer Motion, Next.js APIs), the `sdd-creator` agent **MUST** use `context7` to fetch the latest documentation and code examples. This ensures compliance with current API versions and prevents hallucinations.
