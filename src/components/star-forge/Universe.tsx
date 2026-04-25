@@ -1,17 +1,38 @@
 "use client";
 
-import React, { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import { Stars, Float, PerspectiveCamera, Environment, useTexture, Image } from "@react-three/drei";
+import React, { Suspense, useEffect } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import { Stars, Float, PerspectiveCamera, Environment, useTexture } from "@react-three/drei";
 import Planet from "./Planet";
 import * as THREE from "three";
+import gsap from "gsap";
 
-export function UniverseContent() {
+function UniverseContent({ isScanning }: { isScanning: boolean }) {
+  const { camera } = useThree();
   const architectTexture = useTexture(`${process.env.NODE_ENV === 'production' ? '/porfolio' : ''}/assets/the-architect.png`);
+
+  useEffect(() => {
+    if (isScanning) {
+      // Cinematic Zoom Out to reveal the system
+      gsap.to(camera.position, {
+        x: 0,
+        y: 12,
+        z: 30,
+        duration: 3,
+        ease: "power3.inOut"
+      });
+      
+      gsap.to(camera.rotation, {
+        x: -0.3,
+        duration: 3,
+        ease: "power3.inOut"
+      });
+    }
+  }, [isScanning, camera]);
 
   return (
     <>
-      <PerspectiveCamera makeDefault position={[0, 5, 20]} fov={75} />
+      <PerspectiveCamera makeDefault position={[0, 2, 10]} fov={75} />
       
       {/* Deep Space Background */}
       <Stars 
@@ -94,12 +115,12 @@ export function UniverseContent() {
   );
 }
 
-export default function Universe() {
+export default function Universe({ isScanning }: { isScanning: boolean }) {
   return (
     <div className="absolute inset-0 z-0 bg-black">
       <Canvas shadows dpr={[1, 2]}>
         <Suspense fallback={null}>
-          <UniverseContent />
+          <UniverseContent isScanning={isScanning} />
         </Suspense>
       </Canvas>
     </div>
