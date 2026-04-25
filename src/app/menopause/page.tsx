@@ -253,7 +253,7 @@ export default function MenopausePage() {
       {/* ── FIXED BACK BUTTON ────────────────────────────────────────── */}
       <div className="fixed bottom-10 right-10 z-50">
         <a 
-          href="/nova-home/" 
+          href="/star-forge/" 
           className="bg-white/90 backdrop-blur-md border border-[#7D8F69]/10 text-[#7D8F69] px-10 py-5 rounded-full shadow-2xl text-[9px] font-black uppercase tracking-[0.3em] font-sans-premium flex items-center gap-4 hover:bg-white hover:-translate-y-1 transition-all"
         >
           <div className="rotate-180"><IconArrowRight /></div> Back to Portfolio

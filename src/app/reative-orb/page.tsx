@@ -68,7 +68,7 @@ export default function Home() {
         }
       `}</style>
       
-      <a href="/porfolio/nova-home/" className="back-btn">
+      <a href="/star-forge/" className="back-btn">
         <span>←</span> Back to Portfolio
       </a>
       

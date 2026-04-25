@@ -206,7 +206,7 @@ export default function TheOliveTreePage() {
         <section className="fold-section center">
           <motion.div style={{ opacity: finalOpacity }}>
             <h2 className="display-title small">LEGACY<br/>COMPLETE</h2>
-            <button className="back-home" onClick={() => window.location.href = "/porfolio/"}>
+            <button className="back-home" onClick={() => window.location.href = "/star-forge/"}>
               RETURN TO CORE
             </button>
           </motion.div>
