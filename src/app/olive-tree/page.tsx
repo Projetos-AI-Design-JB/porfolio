@@ -24,25 +24,25 @@ export default function TheOliveTreePage() {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 90,
+    damping: 40,
     restDelta: 0.0001
   });
 
-  // Narrative Progressions - FINAL SYNC FOR 600vh
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  // Narrative Progressions - SYNCED FOR 350vh-600vh
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
   
-  // S1 (Blueprint) - Section 2 (200vh - 300vh)
-  const s1Opacity = useTransform(scrollYProgress, [0.15, 0.25, 0.45, 0.55], [0, 1, 1, 0]);
+  // S1 (Blueprint) - Appears after Hero/Spacer zone
+  const s1Opacity = useTransform(scrollYProgress, [0.18, 0.28, 0.42, 0.52], [0, 1, 1, 0]);
   
-  // S2 (Neural) - Section 4 (400vh - 500vh)
-  const s2Opacity = useTransform(scrollYProgress, [0.55, 0.65, 0.85, 0.92], [0, 1, 1, 0]);
+  // S2 (Neural) - Appears in the middle-late zone
+  const s2Opacity = useTransform(scrollYProgress, [0.58, 0.68, 0.85, 0.92], [0, 1, 1, 0]);
   
-  // Final - Stays visible from 95% to 100%
-  const finalOpacity = useTransform(scrollYProgress, [0.92, 0.96, 1], [0, 1, 1]);
+  // Final - Stays visible from 94% onwards
+  const finalOpacity = useTransform(scrollYProgress, [0.94, 0.98, 1], [0, 1, 1]);
 
-  // Frame Progress: Hold last frame from 95% onwards
-  const frameProgress = useTransform(smoothProgress, [0, 0.05, 0.95, 1], [1, 1, frameCount, frameCount]);
+  // Frame Progress: Start moving immediately
+  const frameProgress = useTransform(smoothProgress, [0, 0.95, 1], [1, frameCount, frameCount]);
 
   // Pre-load images with resilience
   useEffect(() => {
