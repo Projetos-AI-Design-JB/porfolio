@@ -13,7 +13,9 @@ export default function TheOliveTreePage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [images, setImages] = useState<HTMLImageElement[]>([]);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   
   const frameCount = 145;
   const { scrollYProgress } = useScroll({
@@ -22,8 +24,8 @@ export default function TheOliveTreePage() {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 25,
+    stiffness: 100,
+    damping: 30,
     restDelta: 0.0001
   });
 
@@ -49,20 +51,24 @@ export default function TheOliveTreePage() {
 
     const handleImageLoad = () => {
       loadedCount++;
-      if (loadedCount > frameCount * 0.1) {
+      const progress = Math.round((loadedCount / frameCount) * 100);
+      setLoadingProgress(progress);
+      
+      // Allow start after 40 frames (~30%) for better sequential feel
+      if (loadedCount >= 40) {
         setIsLoading(false);
       }
     };
 
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
-      // Using relative path to support subdirectory hosting
       img.src = `../assets/scroll/frame_${i.toString().padStart(4, "0")}.jpg`;
       img.onload = handleImageLoad;
       img.onerror = handleImageLoad;
       loadedImages.push(img);
     }
     setImages(loadedImages);
+    imagesRef.current = loadedImages;
   }, []);
 
   // High-DPI Render loop
@@ -77,9 +83,9 @@ export default function TheOliveTreePage() {
       const time = performance.now();
       const currentFrame = Math.round(frameProgress.get());
       const progress = scrollYProgress.get();
-      const img = images[currentFrame - 1];
+      const img = imagesRef.current[currentFrame - 1];
       
-      if (img && img.complete) {
+      if (img && img.complete && img.naturalWidth !== 0) {
         const { width, height } = canvas;
         const imgWidth = img.width;
         const imgHeight = img.height;
@@ -113,7 +119,7 @@ export default function TheOliveTreePage() {
 
     const frameId = requestAnimationFrame(render);
     return () => cancelAnimationFrame(frameId);
-  }, [images, frameProgress, scrollYProgress]);
+  }, [images]);
 
   // High-DPI Resize Handler
   useEffect(() => {
@@ -135,7 +141,17 @@ export default function TheOliveTreePage() {
   return (
     <main className="the-head-page" ref={containerRef}>
       <div className="canvas-fixed-container">
-        {isLoading && <div className="loading-state">ENHANCING RESOLUTION...</div>}
+        {isLoading && (
+          <div className="loading-state">
+            <div className="loading-content">
+              <span className="loading-text">ENHANCING RESOLUTION...</span>
+              <div className="progress-bar-container">
+                <div className="progress-bar-fill" style={{ width: `${loadingProgress}%` }} />
+              </div>
+              <span className="progress-percent">{loadingProgress}%</span>
+            </div>
+          </div>
+        )}
         <canvas ref={canvasRef} className="scroll-canvas" />
       </div>
 
