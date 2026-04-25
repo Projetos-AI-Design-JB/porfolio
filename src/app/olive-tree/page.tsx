@@ -60,6 +60,10 @@ export default function TheOliveTreePage() {
       }
     };
 
+    const imagesTimeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
+
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
       img.src = `../assets/scroll/frame_${i.toString().padStart(4, "0")}.jpg`;
@@ -69,6 +73,8 @@ export default function TheOliveTreePage() {
     }
     setImages(loadedImages);
     imagesRef.current = loadedImages;
+
+    return () => clearTimeout(imagesTimeout);
   }, []);
 
   // High-DPI Render loop
