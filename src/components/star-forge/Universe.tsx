@@ -2,11 +2,13 @@
 
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Stars, Float, PerspectiveCamera, Environment } from "@react-three/drei";
+import { Stars, Float, PerspectiveCamera, Environment, useTexture, Image } from "@react-three/drei";
 import Planet from "./Planet";
 import * as THREE from "three";
 
 export function UniverseContent() {
+  const architectTexture = useTexture(`${process.env.NODE_ENV === 'production' ? '/porfolio' : ''}/assets/the-architect.png`);
+
   return (
     <>
       <PerspectiveCamera makeDefault position={[0, 5, 20]} fov={75} />
@@ -22,17 +24,32 @@ export function UniverseContent() {
         speed={1} 
       />
       
-      {/* Central Anchor (Avatar Tron) */}
+      {/* THE ARCHITECT (Central Core) */}
       <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
-        <mesh position={[0, 0, 0]}>
-          <octahedronGeometry args={[2, 0]} />
-          <meshStandardMaterial 
-            color="#00f3ff" 
-            emissive="#00f3ff" 
-            emissiveIntensity={4} 
-            wireframe
-          />
-        </mesh>
+        <group>
+          {/* Avatar Sprite */}
+          <mesh position={[0, 0, 0]}>
+            <planeGeometry args={[5, 5]} />
+            <meshBasicMaterial 
+              map={architectTexture} 
+              transparent 
+              opacity={1} 
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+          
+          {/* Core Glow Aura */}
+          <mesh position={[0, 0, -0.1]}>
+            <circleGeometry args={[3.5, 64]} />
+            <meshBasicMaterial color="#00f3ff" transparent opacity={0.15} />
+          </mesh>
+          
+          {/* Inner Circuit Glow */}
+          <mesh position={[0, 0, -0.05]}>
+            <ringGeometry args={[2.5, 2.6, 64]} />
+            <meshBasicMaterial color="#00f3ff" transparent opacity={0.5} />
+          </mesh>
+        </group>
       </Float>
 
       {/* PROJECT PLANETS */}
