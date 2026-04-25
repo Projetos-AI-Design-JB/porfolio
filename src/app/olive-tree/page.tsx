@@ -86,9 +86,9 @@ export default function TheOliveTreePage() {
     if (!context) return;
 
     const render = () => {
-      const time = performance.now();
-      const currentFrame = Math.round(frameProgress.get());
-      const progress = scrollYProgress.get();
+      // Use floor and clamp for index stability
+      const rawFrame = frameProgress.get();
+      const currentFrame = Math.max(1, Math.min(frameCount, Math.floor(rawFrame)));
       const img = imagesRef.current[currentFrame - 1];
       
       if (img && img.complete && img.naturalWidth !== 0) {
@@ -102,22 +102,9 @@ export default function TheOliveTreePage() {
         const x = (width - newWidth) / 2;
         const y = (height - newHeight) / 2;
 
-        // VITAL PULSE ENGINE
-        let baseBrightness = 1.0;
-        if (progress < 0.1) {
-          baseBrightness = 0.5 + (progress * 5.0);
-        }
-
-        // Stronger oscillation for saturation and brightness
-        // Cycle every ~2.5 seconds
-        const pulseFactor = progress > 0.1 ? Math.sin(time * 0.0025) : 0;
-        const brightness = baseBrightness + (pulseFactor * 0.2); 
-        const saturation = 100 + (pulseFactor * 40); // 60% to 140% saturation
-        const contrast = 110 + (pulseFactor * 10);
-
-        context.filter = `brightness(${brightness}) saturate(${saturation}%) contrast(${contrast}%)`;
+        // Simplified render: No filters on mobile for glitch-free 60fps
         context.imageSmoothingEnabled = true;
-        context.imageSmoothingQuality = "high";
+        context.imageSmoothingQuality = "medium"; // Medium is faster on mobile
         context.drawImage(img, x, y, newWidth, newHeight);
       }
       requestAnimationFrame(render);
@@ -137,6 +124,7 @@ export default function TheOliveTreePage() {
         canvas.height = window.innerHeight * dpr;
         canvas.style.width = `${window.innerWidth}px`;
         canvas.style.height = `${window.innerHeight}px`;
+        canvas.style.willChange = "transform";
       }
     };
     window.addEventListener("resize", handleResize);
