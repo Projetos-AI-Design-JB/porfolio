@@ -11,6 +11,7 @@ import {
   Sphere,
 } from "@react-three/drei"
 import { Download, Heart, X } from "lucide-react"
+import Link from "next/link"
 
 /**
  * Single-file Stellar Card Gallery
@@ -393,7 +394,7 @@ export default function StellarCardGallerySingle() {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </div> 
             Back to Portfolio
-          </a>
+          </Link>
         </div>
       </div>
     </CardProvider>
