@@ -60,18 +60,21 @@ function SinglePlanet({ data, scrollProgress, index, onHover }: {
   useFrame((state) => {
     if (!meshRef.current) return;
     
-    const angle = data.startAngle + (scrollProgress * Math.PI * 1.5);
-    const ox = Math.cos(angle) * data.radiusX;
-    const oy = Math.sin(angle) * data.radiusY;
-    const endFactor = Math.max(0, Math.min(1, (scrollProgress - 0.88) * 8));
     const isMobile = size.width < 768;
+    const scaleFactor = isMobile ? 0.65 : 1.0;
+    const radiusFactor = isMobile ? 0.75 : 1.0;
+
+    const angle = data.startAngle + (scrollProgress * Math.PI * 1.5);
+    const ox = Math.cos(angle) * (data.radiusX * radiusFactor);
+    const oy = Math.sin(angle) * (data.radiusY * radiusFactor);
+    const endFactor = Math.max(0, Math.min(1, (scrollProgress - 0.88) * 8));
     
     // NEW FLEXIBLE GRID for 5 Planets
     let gx, gy;
     if (isMobile) {
-      // Stacked/Staggered on mobile
-      gx = (index % 2 === 0 ? -2.2 : 2.2);
-      gy = (index - 2) * 2.8; 
+      // Stacked/Staggered on mobile - adjusted spacing
+      gx = (index % 2 === 0 ? -1.6 : 1.6);
+      gy = (index - 2) * 2.2; 
     } else {
       // Pentagonal/Staggered Grid
       if (index < 3) {
@@ -101,13 +104,13 @@ function SinglePlanet({ data, scrollProgress, index, onHover }: {
     }
 
     if (isNowHovered) {
-      meshRef.current.scale.lerp(new THREE.Vector3(1.1, 1.1, 1.1), 0.1);
+      meshRef.current.scale.lerp(new THREE.Vector3(1.1, 1.1, 1.1).multiplyScalar(scaleFactor), 0.1);
       const vector = new THREE.Vector3();
       meshRef.current.getWorldPosition(vector);
       vector.project(camera);
       onHover({ label: data.label, x: (vector.x * 0.5 + 0.5) * size.width, y: (-(vector.y * 0.5) + 0.5) * size.height });
     } else {
-      meshRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
+      meshRef.current.scale.lerp(new THREE.Vector3(1, 1, 1).multiplyScalar(scaleFactor), 0.1);
     }
   });
 
@@ -140,6 +143,21 @@ function SinglePlanet({ data, scrollProgress, index, onHover }: {
   );
 }
 
+function AdaptiveCamera() {
+  const { camera, size } = useThree();
+  
+  useEffect(() => {
+    const isMobile = size.width < 768;
+    if (camera instanceof THREE.PerspectiveCamera) {
+      camera.fov = isMobile ? 65 : 45;
+      camera.position.z = isMobile ? 22 : 18;
+      camera.updateProjectionMatrix();
+    }
+  }, [size, camera]);
+
+  return null;
+}
+
 export default function PlanetScene({ scrollProgress, onHover }: { 
   scrollProgress: number, 
   onHover: (info: { label: string | null, x: number, y: number } ) => void 
@@ -147,6 +165,7 @@ export default function PlanetScene({ scrollProgress, onHover }: {
   return (
     <div className="absolute inset-0 z-20">
       <Canvas camera={{ position: [0, 0, 18], fov: 45 }} dpr={[1, 2]} alpha>
+        <AdaptiveCamera />
         <ambientLight intensity={0.4} />
         <directionalLight position={[-15, 10, 10]} intensity={2.5} color="#ffffff" />
         <pointLight position={[10, -10, 10]} intensity={1} color="#ffffff" />

@@ -15,8 +15,12 @@ export default function GalactusHero() {
   
   const [scrollProgress, setScrollProgress] = useState(0);
   const [hoverData, setHoverData] = useState<{ label: string | null, x: number, y: number }>({ label: null, x: 0, y: 0 });
+  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
 
   useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: wrapRef.current,
@@ -30,8 +34,14 @@ export default function GalactusHero() {
         { opacity: 1, y: 0, duration: 2.5, ease: "expo.out" }
       );
     }, wrapRef);
-    return () => ctx.revert();
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      ctx.revert();
+    };
   }, []);
+
+  const isRightSide = hoverData.x > windowWidth / 2;
 
   return (
     <div ref={wrapRef} className="relative bg-[#050505] cursor-default" style={{ height: "450vh" }}>
@@ -56,14 +66,15 @@ export default function GalactusHero() {
         {/* 3D ENGINE */}
         <PlanetScene scrollProgress={scrollProgress} onHover={setHoverData} />
 
-        {/* FLOATING PLANET LABEL */}
+        {/* FLOATING PLANET LABEL - Smart Positioning */}
         {hoverData.label && (
           <div 
-            className="absolute z-50 pointer-events-none flex items-center gap-4 transition-opacity duration-300"
+            className="absolute z-50 pointer-events-none flex items-center gap-4 transition-all duration-300"
             style={{ 
               left: hoverData.x, 
               top: hoverData.y,
-              transform: "translate(40px, -50%)"
+              transform: isRightSide ? "translate(-110%, -50%)" : "translate(40px, -50%)",
+              flexDirection: isRightSide ? "row-reverse" : "row"
             }}
           >
             <div className="w-8 h-px bg-cyan-500/50" />
@@ -75,7 +86,7 @@ export default function GalactusHero() {
 
         {/* ELEGANT BACK BUTTON (LEFT SIDE) */}
         <div className="absolute top-6 md:top-10 left-6 md:left-10 z-50">
-          <Link href="/" className="group flex items-center gap-4">
+          <Link href="/porfolio/" className="group flex items-center gap-4">
             <div className="w-6 md:w-8 h-px bg-white/20 group-hover:w-12 group-hover:bg-white/60 transition-all duration-500" />
             <p className="text-[8px] md:text-[9px] font-mono text-white/40 group-hover:text-white transition-colors tracking-[0.5em] uppercase pl-2">
               Back to Core
