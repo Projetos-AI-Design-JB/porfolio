@@ -592,7 +592,7 @@ export const HeroSection = () => {
         .back-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
       `}</style>
 
-      <a className="back-btn" href="/star-forge/">← Back to Portfolio</a>
+      <a className="back-btn" href="/porfolio/star-forge/">← Back to Portfolio</a>
 
       <canvas ref={canvasRef} className="hero-canvas" />
       

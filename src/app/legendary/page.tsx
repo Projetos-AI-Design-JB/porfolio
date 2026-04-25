@@ -75,7 +75,7 @@ export default function LegendaryPage() {
 
       {/* ── FIXED BACK BUTTON (Bottom Left) ────────────────────────── */}
       <a 
-        href="/star-forge/" 
+        href="/porfolio/star-forge/" 
         className="fixed bottom-6 left-6 z-50 bg-white/5 border border-white/10 text-white px-4 py-2 rounded-full hover:bg-white/10 hover:-translate-y-0.5 transition-all backdrop-blur-md text-[11px] md:text-[13px] font-medium shadow-2xl flex items-center gap-2"
       >
         ← Portfolio
