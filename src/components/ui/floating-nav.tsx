@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 const links = [
-  { label: 'Portfolio', href: '/porfolio/star-forge' },
+  { label: 'Portfolio', href: '/star-forge' },
   { label: 'About',     href: '#about' },
   { label: 'Contact',   href: '#contact' },
 ]
