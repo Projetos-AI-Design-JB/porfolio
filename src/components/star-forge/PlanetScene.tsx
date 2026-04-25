@@ -47,7 +47,7 @@ function SinglePlanet({ data, scrollProgress, index, onHover }: {
   const ringRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
   const { camera, size, raycaster } = useThree();
-  const stoneTexture = useTexture("/p-stone.png");
+  const stoneTexture = useTexture("/porfolio/p-stone.png");
 
   // Update cursor on hover
   useEffect(() => {
