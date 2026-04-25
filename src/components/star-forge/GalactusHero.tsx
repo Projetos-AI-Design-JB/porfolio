@@ -8,13 +8,6 @@ import Link from "next/link";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
-const ORBITS = [
-  { id: "ai-art",   label: "AI ART",   route: "/gallery" },
-  { id: "oliveira", label: "OLIVEIRA", route: "/olive-tree" },
-  { id: "cosmos",   label: "COSMOS",   route: "/3d-hero" },
-  { id: "kanban",   label: "KANBAN",   route: "/kanban" },
-];
-
 export default function GalactusHero() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -63,17 +56,6 @@ export default function GalactusHero() {
         {/* 3D ENGINE */}
         <PlanetScene scrollProgress={scrollProgress} onHover={setHoverData} />
 
-        {/* INTERACTIVE CLICKABLE AREAS FOR PLANETS (When in Grid Position) */}
-        {scrollProgress > 0.9 && (
-          <div className="absolute inset-0 z-[60] flex items-center justify-center pointer-events-none">
-             <div className="w-full max-w-[1200px] grid grid-cols-2 gap-x-[600px] gap-y-[350px] mt-[50px] px-20 h-full">
-                {ORBITS.map((o) => (
-                  <Link key={o.id} href={o.route} className="pointer-events-auto block w-32 h-32 mx-auto cursor-pointer" aria-label={`View ${o.label}`} />
-                ))}
-             </div>
-          </div>
-        )}
-
         {/* FLOATING PLANET LABEL */}
         {hoverData.label && (
           <div 
@@ -85,52 +67,54 @@ export default function GalactusHero() {
             }}
           >
             <div className="w-8 h-px bg-cyan-500/50" />
-            <p className="text-[12px] font-light tracking-[1.5em] text-cyan-400 uppercase italic whitespace-nowrap">
+            <p className="text-[10px] md:text-[12px] font-light tracking-[0.5em] md:tracking-[1.5em] text-cyan-400 uppercase italic whitespace-nowrap">
               {hoverData.label}
             </p>
           </div>
         )}
 
         {/* ELEGANT BACK BUTTON (LEFT SIDE) */}
-        <div className="absolute top-10 left-10 z-50">
+        <div className="absolute top-6 md:top-10 left-6 md:left-10 z-50">
           <Link href="/" className="group flex items-center gap-4">
-            <div className="w-8 h-px bg-white/20 group-hover:w-12 group-hover:bg-white/60 transition-all duration-500" />
-            <p className="text-[9px] font-mono text-white/40 group-hover:text-white transition-colors tracking-[0.5em] uppercase pl-2">
+            <div className="w-6 md:w-8 h-px bg-white/20 group-hover:w-12 group-hover:bg-white/60 transition-all duration-500" />
+            <p className="text-[8px] md:text-[9px] font-mono text-white/40 group-hover:text-white transition-colors tracking-[0.5em] uppercase pl-2">
               Back to Core
             </p>
           </Link>
         </div>
 
         {/* HUD: TOP RIGHT SIGNATURE */}
-        <div className="absolute top-10 right-10 z-50 opacity-25">
-          <p className="text-[9px] font-mono text-white tracking-[0.8em] uppercase italic">Portfolio by Julian Kezy</p>
+        <div className="absolute top-6 md:top-10 right-6 md:right-10 z-50 opacity-25">
+          <p className="text-[8px] md:text-[9px] font-mono text-white tracking-[0.3em] md:tracking-[0.8em] uppercase italic">Portfolio by Julian Kezy</p>
         </div>
 
         {/* CENTER TITLE & INSTRUCTION */}
-        <div className="absolute inset-0 z-40 flex flex-col items-center justify-center pointer-events-none">
+        <div className="absolute inset-0 z-40 flex flex-col items-center justify-center pointer-events-none px-6">
           <div ref={titleRef} className="flex flex-col items-center">
-            <h1 className="text-[12px] font-light tracking-[3em] text-white/30 uppercase pl-[3em]">Universal Forge</h1>
-            <div className="w-px h-24 bg-gradient-to-b from-white/20 via-white/5 to-transparent mt-8" />
-            <p className="text-[8px] font-mono text-white/10 tracking-[1em] mt-8 uppercase pl-[1em]">
+            <h1 className="text-[10px] md:text-[12px] font-light tracking-[1.5em] md:tracking-[3em] text-white/30 uppercase md:pl-[3em] text-center">
+              Universal Forge
+            </h1>
+            <div className="w-px h-16 md:h-24 bg-gradient-to-b from-white/20 via-white/5 to-transparent mt-8" />
+            <p className="text-[7px] md:text-[8px] font-mono text-white/10 tracking-[0.5em] md:tracking-[1em] mt-8 uppercase text-center">
               Scroll down to lock coordinates
             </p>
           </div>
         </div>
 
-        {/* METADATA HUD */}
-        <div className="absolute bottom-12 left-12 z-50 opacity-20 flex gap-12">
+        {/* METADATA HUD (Responsive) */}
+        <div className="absolute bottom-6 md:bottom-12 left-6 md:left-12 z-50 opacity-20 flex flex-col md:flex-row gap-4 md:gap-12">
           <div className="flex flex-col gap-1">
-            <p className="text-[8px] font-mono text-white tracking-[0.5em]">ARC_SYS_v4.5</p>
-            <p className="text-[8px] font-mono text-white tracking-[0.5em]">POS_IDX_{scrollProgress.toFixed(3)}</p>
+            <p className="text-[7px] md:text-[8px] font-mono text-white tracking-[0.3em] md:tracking-[0.5em]">ARC_SYS_v4.5</p>
+            <p className="text-[7px] md:text-[8px] font-mono text-white tracking-[0.3em] md:tracking-[0.5em]">POS_IDX_{scrollProgress.toFixed(3)}</p>
           </div>
-          <div className="flex flex-col gap-1 border-l border-white/10 pl-10">
-            <p className="text-[8px] font-mono text-white tracking-[0.5em]">COORD_SYNC_{hoverData.label ? "LOCK" : "SCAN"}</p>
-            <p className="text-[8px] font-mono text-white tracking-[0.5em]">GRID_STB_TRUE</p>
+          <div className="flex flex-col gap-1 md:border-l border-white/10 md:pl-10">
+            <p className="text-[7px] md:text-[8px] font-mono text-white tracking-[0.3em] md:tracking-[0.5em]">COORD_SYNC_{hoverData.label ? "LOCK" : "SCAN"}</p>
+            <p className="text-[7px] md:text-[8px] font-mono text-white tracking-[0.3em] md:tracking-[0.5em]">GRID_STB_TRUE</p>
           </div>
         </div>
 
         {/* SIDE GUIDES */}
-        <div className="absolute inset-x-20 top-0 bottom-0 border-x border-white/[0.02] pointer-events-none" />
+        <div className="absolute inset-x-6 md:inset-x-20 top-0 bottom-0 border-x border-white/[0.02] pointer-events-none" />
 
       </div>
     </div>

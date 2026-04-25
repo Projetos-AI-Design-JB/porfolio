@@ -1,16 +1,16 @@
 "use client";
-// HMR Trigger: Asset Redundancy Sync
 
 import React, { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float, useTexture, Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
+import { useRouter } from "next/navigation";
 
 const PLANETS_DATA = [
-  { id: "ai-art",   label: "AI ART",   color: "#b0a59f", size: 1.1, radiusX: 5.5, radiusY: 2.8, startAngle: 1.5, disp: 0.2, rot: [0,0,0] },
-  { id: "oliveira", label: "OLIVEIRA", color: "#84a59d", size: 1.4, radiusX: 7.5, radiusY: 3.8, startAngle: -0.5, disp: 0.3, rot: [Math.PI/2,0,0] },
-  { id: "cosmos",   label: "COSMOS",   color: "#f2cc8f", size: 0.9, radiusX: 4.0, radiusY: 2.0, startAngle: 3.2, disp: 0.5, rot: [0,Math.PI/4,0] },
-  { id: "kanban",   label: "KANBAN",   color: "#3d405b", size: 0.8, radiusX: 9.5, radiusY: 4.8, startAngle: 0.8, disp: 0.15, ring: true, rot: [0,0,Math.PI/2] },
+  { id: "ai-art",   label: "AI ART",   color: "#b0a59f", size: 1.1, radiusX: 5.5, radiusY: 2.8, startAngle: 1.5, disp: 0.2, rot: [0,0,0], route: "/gallery" },
+  { id: "oliveira", label: "OLIVEIRA", color: "#84a59d", size: 1.4, radiusX: 7.5, radiusY: 3.8, startAngle: -0.5, disp: 0.3, rot: [Math.PI/2,0,0], route: "/olive-tree" },
+  { id: "cosmos",   label: "COSMOS",   color: "#f2cc8f", size: 0.9, radiusX: 4.0, radiusY: 2.0, startAngle: 3.2, disp: 0.5, rot: [0,Math.PI/4,0], route: "/3d-hero" },
+  { id: "kanban",   label: "KANBAN",   color: "#3d405b", size: 0.8, radiusX: 9.5, radiusY: 4.8, startAngle: 0.8, disp: 0.15, ring: true, rot: [0,0,Math.PI/2], route: "/kanban" },
 ];
 
 function DebrisField({ count = 2000 }) {
@@ -48,9 +48,9 @@ function SinglePlanet({ data, scrollProgress, index, onHover }: {
   const ringRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
   const { camera, size, raycaster } = useThree();
+  const router = useRouter();
   const stoneTexture = useTexture("/porfolio/p-stone.png");
 
-  // Update cursor on hover
   useEffect(() => {
     document.body.style.cursor = hovered ? "pointer" : "default";
     return () => { document.body.style.cursor = "default"; };
@@ -63,8 +63,12 @@ function SinglePlanet({ data, scrollProgress, index, onHover }: {
     const ox = Math.cos(angle) * data.radiusX;
     const oy = Math.sin(angle) * data.radiusY;
     const endFactor = Math.max(0, Math.min(1, (scrollProgress - 0.88) * 8));
-    const gx = (index % 2 === 0 ? -5 : 5);
-    const gy = (index < 2 ? -3 : 3);
+    const isMobile = size.width < 768;
+    
+    // Adjusted Grid for Mobile
+    const gx = isMobile ? (index % 2 === 0 ? -2.5 : 2.5) : (index % 2 === 0 ? -5 : 5);
+    const gy = isMobile ? (index < 2 ? -4 : 4) : (index < 2 ? -3 : 3);
+    
     const target = new THREE.Vector3(
       ox * (1 - endFactor) + gx * endFactor,
       oy * (1 - endFactor) + gy * endFactor,
@@ -95,7 +99,11 @@ function SinglePlanet({ data, scrollProgress, index, onHover }: {
 
   return (
     <group>
-      <mesh ref={meshRef} rotation={data.rot}>
+      <mesh 
+        ref={meshRef} 
+        rotation={data.rot}
+        onClick={() => router.push(data.route)} // DIRECT 3D LINK
+      >
         <sphereGeometry args={[data.size, 128, 128]} />
         <meshStandardMaterial 
           color={data.color}
