@@ -67,7 +67,7 @@ export default function HomePage() {
 
           {/* CTA */}
           <motion.div {...fadeUp(0.75)}>
-            <Link href="/nova-home" className="home-cta">
+            <Link href="/porfolio/" className="home-cta">
               View Portfolio
               <motion.span
                 className="home-cta-arrow"
