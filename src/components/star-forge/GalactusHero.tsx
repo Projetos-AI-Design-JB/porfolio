@@ -86,7 +86,7 @@ export default function GalactusHero() {
 
         {/* ELEGANT BACK BUTTON (LEFT SIDE) */}
         <div className="absolute top-6 md:top-10 left-6 md:left-10 z-50">
-          <Link href="/porfolio/" className="group flex items-center gap-4">
+          <Link href="/" className="group flex items-center gap-4">
             <div className="w-6 md:w-8 h-px bg-white/20 group-hover:w-12 group-hover:bg-white/60 transition-all duration-500" />
             <p className="text-[8px] md:text-[9px] font-mono text-white/40 group-hover:text-white transition-colors tracking-[0.5em] uppercase pl-2">
               Back to Core
