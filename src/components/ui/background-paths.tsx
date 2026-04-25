@@ -103,91 +103,110 @@ export function BackgroundPaths({
                         ))}
                     </h1>
 
-                    <div className="flex flex-wrap justify-center gap-4">
-                        <a href="/porfolio/kanban/">
-                            <Button
-                                variant="ghost"
-                                className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
-                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                                text-black dark:text-white transition-all duration-300 
-                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                                hover:shadow-md dark:hover:shadow-neutral-800/50"
-                            >
-                                Kanban
-                            </Button>
-                        </a>
-                        <a href="/porfolio/3d-hero/">
-                            <Button
-                                variant="ghost"
-                                className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
-                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                                text-black dark:text-white transition-all duration-300 
-                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                                hover:shadow-md dark:hover:shadow-neutral-800/50"
-                            >
-                                3D Cosmos
-                            </Button>
-                        </a>
-                        <a href="/porfolio/reative-orb/">
-                            <Button
-                                variant="ghost"
-                                className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
-                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                                text-black dark:text-white transition-all duration-300 
-                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                                hover:shadow-md dark:hover:shadow-neutral-800/50"
-                            >
-                                Orb
-                            </Button>
-                        </a>
-                        <a href="/porfolio/vendas-software/">
-                            <Button
-                                variant="ghost"
-                                className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
-                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                                text-black dark:text-white transition-all duration-300 
-                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                                hover:shadow-md dark:hover:shadow-neutral-800/50"
-                            >
-                                LP
-                            </Button>
-                        </a>
-                        <a href="/porfolio/ethereal/">
-                            <Button
-                                variant="ghost"
-                                className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
-                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                                text-black dark:text-white transition-all duration-300 
-                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                                hover:shadow-md dark:hover:shadow-neutral-800/50"
-                            >
-                                Ethereal
-                            </Button>
-                        </a>
-                        <a href="/porfolio/legendary/">
-                            <Button
-                                variant="ghost"
-                                className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
-                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                                text-black dark:text-white transition-all duration-300 
-                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                                hover:shadow-md dark:hover:shadow-neutral-800/50"
-                            >
-                                Legendary LP
-                            </Button>
-                        </a>
-                        <a href="https://projetos-ai-design-jb.github.io/porfolio/gallery/">
-                            <Button
-                                variant="ghost"
-                                className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
-                                bg-cyan-500/10 hover:bg-cyan-500/20 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 
-                                text-cyan-600 dark:text-cyan-400 transition-all duration-300 
-                                group-hover:-translate-y-0.5 border border-cyan-500/20
-                                hover:shadow-lg hover:shadow-cyan-500/20 shadow-md"
-                            >
-                                AI ART
-                            </Button>
-                        </a>
+                    <div className="flex flex-col gap-4">
+                        {/* ROW 1: MAIN IMMERSIVE PROJECTS */}
+                        <div className="flex flex-wrap justify-center gap-4">
+                            <a href="/olive-tree/">
+                                <Button
+                                    variant="ghost"
+                                    className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                    bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
+                                    text-black dark:text-white transition-all duration-300 
+                                    group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
+                                    hover:shadow-md dark:hover:shadow-neutral-800/50"
+                                >
+                                    Olive Tree
+                                </Button>
+                            </a>
+                            <a href="/porfolio/legendary/">
+                                <Button
+                                    variant="ghost"
+                                    className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                    bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
+                                    text-black dark:text-white transition-all duration-300 
+                                    group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
+                                    hover:shadow-md dark:hover:shadow-neutral-800/50"
+                                >
+                                    Legendary LP
+                                </Button>
+                            </a>
+                            <a href="/porfolio/3d-hero/">
+                                <Button
+                                    variant="ghost"
+                                    className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                    bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
+                                    text-black dark:text-white transition-all duration-300 
+                                    group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
+                                    hover:shadow-md dark:hover:shadow-neutral-800/50"
+                                >
+                                    3D Cosmos
+                                </Button>
+                            </a>
+                            <a href="/porfolio/ethereal/">
+                                <Button
+                                    variant="ghost"
+                                    className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                    bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
+                                    text-black dark:text-white transition-all duration-300 
+                                    group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
+                                    hover:shadow-md dark:hover:shadow-neutral-800/50"
+                                >
+                                    Ethereal
+                                </Button>
+                            </a>
+                        </div>
+
+                        {/* ROW 2: UTILITIES & EXTRAS */}
+                        <div className="flex flex-wrap justify-center gap-4">
+                            <a href="/porfolio/kanban/">
+                                <Button
+                                    variant="ghost"
+                                    className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                    bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
+                                    text-black dark:text-white transition-all duration-300 
+                                    group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
+                                    hover:shadow-md dark:hover:shadow-neutral-800/50"
+                                >
+                                    Kanban
+                                </Button>
+                            </a>
+                            <a href="/porfolio/reative-orb/">
+                                <Button
+                                    variant="ghost"
+                                    className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                    bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
+                                    text-black dark:text-white transition-all duration-300 
+                                    group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
+                                    hover:shadow-md dark:hover:shadow-neutral-800/50"
+                                >
+                                    Orb
+                                </Button>
+                            </a>
+                            <a href="/porfolio/vendas-software/">
+                                <Button
+                                    variant="ghost"
+                                    className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                    bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
+                                    text-black dark:text-white transition-all duration-300 
+                                    group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
+                                    hover:shadow-md dark:hover:shadow-neutral-800/50"
+                                >
+                                    LP
+                                </Button>
+                            </a>
+                            <a href="https://projetos-ai-design-jb.github.io/porfolio/gallery/">
+                                <Button
+                                    variant="ghost"
+                                    className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
+                                    bg-cyan-500/10 hover:bg-cyan-500/20 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 
+                                    text-cyan-600 dark:text-cyan-400 transition-all duration-300 
+                                    group-hover:-translate-y-0.5 border border-cyan-500/20
+                                    hover:shadow-lg hover:shadow-cyan-500/20 shadow-md"
+                                >
+                                    AI ART
+                                </Button>
+                            </a>
+                        </div>
                     </div>
                 </motion.div>
             </div>
