@@ -8,11 +8,6 @@
   font-family: 'Inter', sans-serif;
 }
 
-@media (max-width: 768px) {
-  .the-head-page {
-    height: 350vh; /* Shorter scroll for mobile snappy feel */
-  }
-}
 
 .canvas-fixed-container {
   position: fixed;
@@ -187,14 +182,24 @@
 }
 
 @media (max-width: 768px) {
+  .the-head-page {
+    height: 350vh;
+  }
+
   .fold-section {
+    height: 70vh; /* Shorter cards */
+    padding: 0 5vw;
     justify-content: center !important;
     text-align: center !important;
+  }
+
+  .fold-section.spacer {
+    height: 30vh; /* Minimal gaps */
   }
   
   .glass-card-editorial {
     max-width: 90vw;
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.2rem;
   }
 
   .card-header {
@@ -202,8 +207,8 @@
     gap: 0.5rem;
   }
 
-  .display-title { font-size: 4rem; }
-  .lead-text { margin-inline: auto; }
+  .display-title { font-size: 3.5rem; }
+  .lead-text { margin-inline: auto; font-size: 1rem; }
 }
 
 /* Visual Overlays */
