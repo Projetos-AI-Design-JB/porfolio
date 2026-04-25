@@ -11,6 +11,7 @@ const PLANETS_DATA = [
   { id: "oliveira", label: "OLIVEIRA", color: "#84a59d", size: 1.4, radiusX: 7.5, radiusY: 3.8, startAngle: -0.5, disp: 0.3, rot: [Math.PI/2,0,0], route: "/olive-tree" },
   { id: "cosmos",   label: "COSMOS",   color: "#f2cc8f", size: 0.9, radiusX: 4.0, radiusY: 2.0, startAngle: 3.2, disp: 0.5, rot: [0,Math.PI/4,0], route: "/3d-hero" },
   { id: "kanban",   label: "KANBAN",   color: "#3d405b", size: 0.8, radiusX: 9.5, radiusY: 4.8, startAngle: 0.8, disp: 0.15, ring: true, rot: [0,0,Math.PI/2], route: "/kanban" },
+  { id: "ethereal", label: "ETHEREAL", color: "#a2d2ff", size: 0.7, radiusX: 11.5, radiusY: 5.8, startAngle: 2.1, disp: 0.4, rot: [Math.PI/4, Math.PI/4, 0], route: "/ethereal" },
 ];
 
 function DebrisField({ count = 2000 }) {
@@ -65,9 +66,22 @@ function SinglePlanet({ data, scrollProgress, index, onHover }: {
     const endFactor = Math.max(0, Math.min(1, (scrollProgress - 0.88) * 8));
     const isMobile = size.width < 768;
     
-    // Adjusted Grid for Mobile
-    const gx = isMobile ? (index % 2 === 0 ? -2.5 : 2.5) : (index % 2 === 0 ? -5 : 5);
-    const gy = isMobile ? (index < 2 ? -4 : 4) : (index < 2 ? -3 : 3);
+    // NEW FLEXIBLE GRID for 5 Planets
+    let gx, gy;
+    if (isMobile) {
+      // Stacked/Staggered on mobile
+      gx = (index % 2 === 0 ? -2.2 : 2.2);
+      gy = (index - 2) * 2.8; 
+    } else {
+      // Pentagonal/Staggered Grid
+      if (index < 3) {
+        gx = (index - 1) * 6; // Top row (3 planets)
+        gy = -3.5;
+      } else {
+        gx = (index === 3 ? -3.5 : 3.5); // Bottom row (2 planets)
+        gy = 3.5;
+      }
+    }
     
     const target = new THREE.Vector3(
       ox * (1 - endFactor) + gx * endFactor,
@@ -102,7 +116,7 @@ function SinglePlanet({ data, scrollProgress, index, onHover }: {
       <mesh 
         ref={meshRef} 
         rotation={data.rot}
-        onClick={() => router.push(data.route)} // DIRECT 3D LINK
+        onClick={() => router.push(data.route)}
       >
         <sphereGeometry args={[data.size, 128, 128]} />
         <meshStandardMaterial 
