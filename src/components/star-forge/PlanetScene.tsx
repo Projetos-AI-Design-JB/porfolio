@@ -69,22 +69,10 @@ function SinglePlanet({ data, scrollProgress, index, onHover }: {
     const oy = Math.sin(angle) * (data.radiusY * radiusFactor);
     const endFactor = Math.max(0, Math.min(1, (scrollProgress - 0.88) * 8));
     
-    // NEW FLEXIBLE GRID for 5 Planets
-    let gx, gy;
-    if (isMobile) {
-      // Stacked/Staggered on mobile - adjusted spacing
-      gx = (index % 2 === 0 ? -1.6 : 1.6);
-      gy = (index - 2) * 2.2; 
-    } else {
-      // Pentagonal/Staggered Grid
-      if (index < 3) {
-        gx = (index - 1) * 6; // Top row (3 planets)
-        gy = -3.5;
-      } else {
-        gx = (index === 3 ? -3.5 : 3.5); // Bottom row (2 planets)
-        gy = 3.5;
-      }
-    }
+    // MASTER VERTICAL ALIGNMENT (Now for both Mobile and Desktop)
+    const spacing = isMobile ? 2.5 : 3.8;
+    const gx = 0; // Perfectly centered horizontally
+    const gy = (index - 2) * spacing; 
     
     const target = new THREE.Vector3(
       ox * (1 - endFactor) + gx * endFactor,
@@ -150,7 +138,7 @@ function AdaptiveCamera() {
     const isMobile = size.width < 768;
     if (camera instanceof THREE.PerspectiveCamera) {
       camera.fov = isMobile ? 65 : 45;
-      camera.position.z = isMobile ? 22 : 18;
+      camera.position.z = isMobile ? 22 : 25; // Pushed back slightly on desktop to fit vertical list
       camera.updateProjectionMatrix();
     }
   }, [size, camera]);
