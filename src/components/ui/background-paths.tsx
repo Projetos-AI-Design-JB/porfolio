@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 function FloatingPaths({ position }: { position: number }) {
     const paths = Array.from({ length: 36 }, (_, i) => ({
@@ -106,7 +107,7 @@ export function BackgroundPaths({
                     <div className="flex flex-col gap-4">
                         {/* ROW 1: MAIN IMMERSIVE PROJECTS */}
                         <div className="flex flex-wrap justify-center gap-4">
-                            <a href="/porfolio/olive-tree/">
+                            <Link href="/olive-tree/">
                                 <Button
                                     variant="ghost"
                                     className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
@@ -117,8 +118,8 @@ export function BackgroundPaths({
                                 >
                                     Olive Tree
                                 </Button>
-                            </a>
-                            <a href="/porfolio/legendary/">
+                            </Link>
+                            <Link href="/legendary/">
                                 <Button
                                     variant="ghost"
                                     className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
@@ -129,8 +130,8 @@ export function BackgroundPaths({
                                 >
                                     Legendary LP
                                 </Button>
-                            </a>
-                            <a href="/porfolio/3d-hero/">
+                            </Link>
+                            <Link href="/3d-hero/">
                                 <Button
                                     variant="ghost"
                                     className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
@@ -141,8 +142,8 @@ export function BackgroundPaths({
                                 >
                                     3D Cosmos
                                 </Button>
-                            </a>
-                            <a href="/porfolio/ethereal/">
+                            </Link>
+                            <Link href="/ethereal/">
                                 <Button
                                     variant="ghost"
                                     className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
@@ -153,12 +154,12 @@ export function BackgroundPaths({
                                 >
                                     Ethereal
                                 </Button>
-                            </a>
+                            </Link>
                         </div>
 
                         {/* ROW 2: UTILITIES & EXTRAS */}
                         <div className="flex flex-wrap justify-center gap-4">
-                            <a href="/porfolio/kanban/">
+                            <Link href="/kanban/">
                                 <Button
                                     variant="ghost"
                                     className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
@@ -169,8 +170,8 @@ export function BackgroundPaths({
                                 >
                                     Kanban
                                 </Button>
-                            </a>
-                            <a href="/porfolio/reative-orb/">
+                            </Link>
+                            <Link href="/reative-orb/">
                                 <Button
                                     variant="ghost"
                                     className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
@@ -181,8 +182,8 @@ export function BackgroundPaths({
                                 >
                                     Orb
                                 </Button>
-                            </a>
-                            <a href="/porfolio/vendas-software/">
+                            </Link>
+                            <Link href="/vendas-software/">
                                 <Button
                                     variant="ghost"
                                     className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
@@ -193,7 +194,7 @@ export function BackgroundPaths({
                                 >
                                     LP
                                 </Button>
-                            </a>
+                            </Link>
                             <a href="https://projetos-ai-design-jb.github.io/porfolio/gallery/">
                                 <Button
                                     variant="ghost"

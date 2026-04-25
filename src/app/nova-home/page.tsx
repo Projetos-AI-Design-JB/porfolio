@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 
 export const metadata: Metadata = {

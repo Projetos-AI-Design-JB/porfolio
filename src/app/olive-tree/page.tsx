@@ -57,7 +57,7 @@ export default function TheOliveTreePage() {
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
       // Using relative path to support subdirectory hosting
-      img.src = `../../assets/scroll/frame_${i.toString().padStart(4, "0")}.jpg`;
+      img.src = `../assets/scroll/frame_${i.toString().padStart(4, "0")}.jpg`;
       img.onload = handleImageLoad;
       img.onerror = handleImageLoad;
       loadedImages.push(img);
