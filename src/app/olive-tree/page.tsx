@@ -54,6 +54,10 @@ export default function TheOliveTreePage() {
       const progress = Math.round((loadedCount / frameCount) * 100);
       setLoadingProgress(progress);
       
+      if (loadedCount % 20 === 0) {
+        console.log(`[OliveTree] Loaded ${loadedCount}/${frameCount} frames`);
+      }
+
       // Allow start after 40 frames (~30%) for better sequential feel
       if (loadedCount >= 40) {
         setIsLoading(false);
@@ -61,14 +65,17 @@ export default function TheOliveTreePage() {
     };
 
     const imagesTimeout = setTimeout(() => {
+      console.warn("[OliveTree] Loading timeout reached. Forcing unlock.");
       setIsLoading(false);
     }, 5000);
 
+    console.log("[OliveTree] Starting asset pre-load...");
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
-      img.src = `../assets/scroll/frame_${i.toString().padStart(4, "0")}.jpg`;
+      // Use absolute path from public root for cross-environment stability
+      img.src = `${process.env.NODE_ENV === 'production' ? '/porfolio' : ''}/assets/scroll/frame_${i.toString().padStart(4, "0")}.jpg`;
       img.onload = handleImageLoad;
-      img.onerror = handleImageLoad;
+      img.onerror = () => console.error(`[OliveTree] Failed to load frame ${i}`);
       loadedImages.push(img);
     }
     setImages(loadedImages);
