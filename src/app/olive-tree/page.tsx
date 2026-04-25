@@ -123,8 +123,6 @@ export default function TheOliveTreePage() {
         const dpr = window.devicePixelRatio || 1;
         canvas.width = window.innerWidth * dpr;
         canvas.height = window.innerHeight * dpr;
-        const ctx = canvas.getContext("2d");
-        if (ctx) ctx.scale(dpr, dpr);
         canvas.style.width = `${window.innerWidth}px`;
         canvas.style.height = `${window.innerHeight}px`;
       }
