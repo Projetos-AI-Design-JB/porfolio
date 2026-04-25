@@ -56,7 +56,8 @@ export default function TheOliveTreePage() {
 
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
-      img.src = `/assets/scroll/frame_${i.toString().padStart(4, "0")}.jpg`;
+      // Using relative path to support subdirectory hosting
+      img.src = `../../assets/scroll/frame_${i.toString().padStart(4, "0")}.jpg`;
       img.onload = handleImageLoad;
       img.onerror = handleImageLoad;
       loadedImages.push(img);
@@ -190,7 +191,7 @@ export default function TheOliveTreePage() {
         <section className="fold-section center">
           <motion.div style={{ opacity: finalOpacity }}>
             <h2 className="display-title small">LEGACY<br/>COMPLETE</h2>
-            <button className="back-home" onClick={() => window.location.href = "/nova-home/"}>
+            <button className="back-home" onClick={() => window.location.href = "/porfolio/nova-home/"}>
               RETURN TO CORE
             </button>
           </motion.div>

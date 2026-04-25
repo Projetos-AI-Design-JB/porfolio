@@ -106,7 +106,7 @@ export function BackgroundPaths({
                     <div className="flex flex-col gap-4">
                         {/* ROW 1: MAIN IMMERSIVE PROJECTS */}
                         <div className="flex flex-wrap justify-center gap-4">
-                            <a href="/olive-tree/">
+                            <a href="/porfolio/olive-tree/">
                                 <Button
                                     variant="ghost"
                                     className="font-syne rounded-[1.15rem] px-8 py-4 md:py-6 text-base md:text-lg font-semibold backdrop-blur-md 
