@@ -362,8 +362,8 @@
   .cv-footer {
     bottom: 2rem;
     right: 8vw;
-    position: relative;
-    margin-top: 4rem;
+    position: absolute;
+    text-align: right;
   }
   
   .cv-right {
