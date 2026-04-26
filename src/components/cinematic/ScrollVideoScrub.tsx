@@ -106,6 +106,9 @@ const ScrollVideoScrub: React.FC = () => {
   const h2 = useTransform(sp, [0.50, 0.66, 0.85], [0, 1, 0]);
   const h3 = useTransform(sp, [0.80, 0.95, 1.00], [0, 1, 1]);
 
+  const latValue = useTransform(sp, [0, 1], [40.7128, 40.7589]);
+  const longValue = useTransform(sp, [0, 1], [74.0060, 73.9851]);
+
   // ── PULSE GLOW LOGIC ──────────────────────────────────────────
   const pulseGlowOpacity = useTransform(sp, [0.80, 0.95, 1.00], [0, 1, 1]);
 
