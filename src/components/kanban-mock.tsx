@@ -15,16 +15,16 @@ import { cn } from "@/lib/utils";
 import { useLocalStorage } from "@/lib/hooks/use-local-storage";
 import Sidebar from "./sidebar";
 
-export const Kanban = () => {
+export const KanbanMock = () => {
   return <KanbanApp />;
 };
 
 const KanbanApp = () => {
-  const [boards, setBoards] = useLocalStorage<BoardType[]>("boards", [
+  const [boards, setBoards] = useLocalStorage<BoardType[]>("boards-mock", [
     {
       id: "board-1",
-      name: "Animepocky - Produção",
-      cards: [],
+      name: "Mock Portfolio Board",
+      cards: DEFAULT_CARDS,
     },
   ]);
   const [activeBoardId, setActiveBoardId] = useState<string | null>(
@@ -55,26 +55,6 @@ const KanbanApp = () => {
       setActiveBoardId(newBoards.length > 0 ? newBoards[0].id : null);
     }
   };
-
-  // Migration: Ensure no "to do" columns exist in data
-  useEffect(() => {
-    let hasMigration = false;
-    const migratedBoards = boards.map(board => {
-      const migratedCards = board.cards.map(card => {
-        if (card.column === ("to do" as any)) {
-          hasMigration = true;
-          return { ...card, column: "todo" as ColumnType };
-        }
-        return card;
-      });
-      if (hasMigration) return { ...board, cards: migratedCards };
-      return board;
-    });
-
-    if (hasMigration) {
-      setBoards(migratedBoards);
-    }
-  }, [boards, setBoards]);
 
   const setCardsForActiveBoard = (updater: SetStateAction<CardType[]>) => {
     const newBoards = boards.map((board) => {
@@ -125,17 +105,32 @@ const KanbanApp = () => {
     setCardsForActiveBoard(newCards);
   };
 
+  // Migration: Ensure no "to do" columns exist in data
+  useEffect(() => {
+    let hasMigration = false;
+    const migratedBoards = boards.map(board => {
+      const migratedCards = board.cards.map(card => {
+        if (card.column === ("to do" as any)) {
+          hasMigration = true;
+          return { ...card, column: "todo" as ColumnType };
+        }
+        return card;
+      });
+      if (hasMigration) return { ...board, cards: migratedCards };
+      return board;
+    });
+
+    if (hasMigration) {
+      setBoards(migratedBoards);
+    }
+  }, [boards, setBoards]);
+
   if (!mounted) {
     return <div className="h-screen w-full bg-neutral-900" />;
   }
 
   return (
-    <div className="flex h-screen w-full bg-neutral-900 text-neutral-50 font-open-sans overflow-hidden">
-      {/* Production Indicator */}
-      <div className="fixed top-2 right-2 z-50 bg-red-600/20 border border-red-500/40 px-3 py-1 rounded text-[10px] font-bold tracking-widest text-red-400 uppercase pointer-events-none">
-        Local Production Mode — Animepocky
-      </div>
-
+    <div className="flex h-screen w-full bg-neutral-900 text-neutral-50 font-open-sans">
       <Sidebar
         boards={boards}
         activeBoardId={activeBoardId}
@@ -153,8 +148,8 @@ const KanbanApp = () => {
         />
       ) : (
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-2xl font-bold mb-2">Sem quadros ativos</h2>
-          <p className="text-neutral-400">Crie um novo quadro no menu lateral.</p>
+          <h2 className="text-2xl">No boards found.</h2>
+          <p>Create a new board to get started.</p>
         </div>
       )}
     </div>
@@ -330,13 +325,6 @@ const Card = ({ title, id, column, createdAt, handleDragStart, handleUpdateCard,
   const [editTitle, setEditTitle] = useState(title);
   const handleSave = () => { if (editTitle.trim()) handleUpdateCard(id, editTitle.trim()); setIsEditing(false); };
 
-  const getBorderColor = (colorClass: string) => {
-    if (colorClass.includes("emerald")) return "#A7F3D0";
-    if (colorClass.includes("blue")) return "#BFDBFE";
-    if (colorClass.includes("yellow")) return "#FEF08A";
-    return "#737373";
-  };
-
   const linkify = (text: string) => {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.split(urlRegex).map((part, i) => {
@@ -366,39 +354,25 @@ const Card = ({ title, id, column, createdAt, handleDragStart, handleUpdateCard,
         layoutId={id}
         draggable="true"
         onDragStart={(e) => handleDragStart(e, { title, id, column, createdAt })}
-        className={cn(
-          "group relative cursor-grab rounded border p-3 active:cursor-grabbing transition-all duration-200",
-          column === "done"
-            ? "bg-emerald-950/40 border-emerald-500/40 shadow-sm shadow-emerald-900/20 hover:bg-emerald-900/40"
-            : "border-neutral-700 bg-neutral-800 hover:bg-neutral-700/50"
-        )}
-        style={{ borderLeft: `4px solid ${getBorderColor(headingColor)}` }}
+        className={cn("group relative cursor-grab rounded border p-3 active:cursor-grabbing transition-all duration-200 border-neutral-700 bg-neutral-800 hover:bg-neutral-700/50")}
+        style={{ borderLeft: `4px solid ${headingColor.includes('emerald') ? '#A7F3D0' : headingColor.includes('blue') ? '#BFDBFE' : headingColor.includes('yellow') ? '#FEF08A' : '#737373'}` }}
       >
         {isEditing ? (
           <textarea
             value={editTitle}
             onChange={(e) => setEditTitle(e.target.value)}
             onBlur={handleSave}
-            autoFocus
             className="w-full resize-none rounded bg-transparent text-sm text-neutral-100 focus:outline-none"
           />
         ) : (
-          <p
-            className={cn(
-              "text-sm",
-              column === "done" ? "text-emerald-50/90 line-through decoration-emerald-500/50" : "text-neutral-100"
-            )}
-            style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}
-          >
+          <p className="text-sm text-neutral-100" style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
             {linkify(title)}
           </p>
         )}
         <div className="absolute right-2 top-2 hidden group-hover:flex items-center gap-2">
-          <button onClick={() => handleCopyCard(id)} title="Copy"><FiCopy /></button>
-          <button onClick={() => setIsEditing(true)} title="Edit"><FiEdit /></button>
-          <button onClick={() => handleDeleteCard(id)} className="text-red-400 hover:text-red-500 transition-colors" title="Delete"><FiTrash /></button>
+          <button onClick={() => setIsEditing(true)}><FiEdit /></button>
+          <button onClick={() => handleDeleteCard(id)} className="text-red-400"><FiTrash /></button>
         </div>
-        {createdAt && <p className="mt-2 text-right text-[10px] text-neutral-500">{new Date(createdAt).toLocaleDateString()}</p>}
       </motion.div>
     </>
   );
@@ -429,17 +403,30 @@ const AddCard = ({ column, setCards }: any) => {
   };
   return adding ? (
     <form onSubmit={handleSubmit} className="mt-2">
-      <textarea onChange={(e) => setText(e.target.value)} autoFocus className="w-full rounded border border-violet-400 bg-neutral-800 p-3 text-sm text-neutral-50 focus:outline-none" />
+      <textarea onChange={(e) => setText(e.target.value)} autoFocus className="w-full rounded border border-violet-400 bg-neutral-800 p-3 text-sm" />
       <div className="flex justify-end gap-2 mt-2">
         <button onClick={() => setAdding(false)} className="text-xs text-neutral-400">Cancel</button>
-        <button type="submit" className="bg-neutral-50 text-neutral-950 px-3 py-1 rounded text-xs font-bold">Add</button>
+        <button type="submit" className="bg-neutral-50 text-neutral-950 px-3 py-1 rounded text-xs">Add</button>
       </div>
     </form>
   ) : (
-    <button onClick={() => setAdding(true)} className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-400 hover:text-neutral-50 transition-colors">Add card <FiPlus /></button>
+    <button onClick={() => setAdding(true)} className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-400">Add card <FiPlus /></button>
   );
 };
 
 type ColumnType = "backlog" | "todo" | "doing" | "done";
 type CardType = { title: string; id: string; column: ColumnType; createdAt: string; };
 type BoardType = { id: string; name: string; cards: CardType[]; };
+
+const DEFAULT_CARDS: CardType[] = [
+  { title: "Look into render bug in dashboard", id: "1", column: "backlog", createdAt: new Date().toISOString() },
+  { title: "SOX compliance checklist", id: "2", column: "backlog", createdAt: new Date().toISOString() },
+  { title: "[SPIKE] Migrate to Azure", id: "3", column: "backlog", createdAt: new Date().toISOString() },
+  { title: "Document Notifications service", id: "4", column: "backlog", createdAt: new Date().toISOString() },
+  { title: "Research DB options for new microservice", id: "5", column: "to do", createdAt: new Date().toISOString() },
+  { title: "Postmortem for outage", id: "6", column: "to do", createdAt: new Date().toISOString() },
+  { title: "Sync with product on Q3 roadmap", id: "7", column: "to do", createdAt: new Date().toISOString() },
+  { title: "Refactor context providers to use Zustand", id: "8", column: "doing", createdAt: new Date().toISOString() },
+  { title: "Add logging to daily CRON", id: "9", column: "doing", createdAt: new Date().toISOString() },
+  { title: "Set up DD dashboards for Lambda listener", id: "10", column: "done", createdAt: new Date().toISOString() },
+];

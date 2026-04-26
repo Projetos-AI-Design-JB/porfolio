@@ -1,7 +1,7 @@
 "use client";
-import { Kanban } from "@/components/kanban";
+import { KanbanMock } from "@/components/kanban-mock";
 import React from "react";
 
 export function KanbanDemo() {
-  return <Kanban />;
+  return <KanbanMock />;
 }
