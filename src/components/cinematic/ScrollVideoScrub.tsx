@@ -27,13 +27,16 @@ const ScrollVideoScrub: React.FC = () => {
   useEffect(() => {
     let loaded = 0;
     const preloadImages = () => {
+      // Correct path for GitHub Pages sub-directory
+      const basePath = process.env.NODE_ENV === 'production' ? '/porfolio' : '';
+      
       // Clear array if running in strict mode
       imagesRef.current = []; 
       
       for (let i = 1; i <= frameCount; i++) {
         const img = new Image();
         const frameStr = i.toString().padStart(4, "0");
-        img.src = `/assets/cables-scroll/frame_${frameStr}.jpg`;
+        img.src = `${basePath}/assets/cables-scroll/frame_${frameStr}.jpg`;
         
         img.onload = () => {
           loaded++;
@@ -157,17 +160,16 @@ const ScrollVideoScrub: React.FC = () => {
 
         <section className="cv-section">
           <motion.div className="cv-left" style={{ opacity: h0 }}>
-            <span className="cv-overline">[ PORTFOLIO ]</span>
-            <h1 className="cv-title">WELCOME</h1>
+            <span className="cv-overline">[ SYSTEM_INIT ]</span>
+            <h1 className="cv-title">NEURAL<br />UNFOLD</h1>
           </motion.div>
           <div className="cv-mid" />
           <motion.div className="cv-right" style={{ opacity: h0 }}>
-            <div className="cv-highlight-box">
-              <div className="cv-tag">[ JULIAN KEZY ]</div>
-              <div className="cv-coords" style={{ opacity: 0.8, marginTop: "1rem" }}>
-                SOFTWARE ENGINEER<br />& AI DESIGNER
-              </div>
-            </div>
+            <div className="cv-tag">[ PHASE_00 ]</div>
+            <motion.div className="cv-coords" style={{ opacity: 0.6, marginTop: "1rem" }}>
+              LAT: <motion.span>{latValue}</motion.span>° N<br />
+              LONG: <motion.span>{longValue}</motion.span>° W
+            </motion.div>
           </motion.div>
         </section>
 
