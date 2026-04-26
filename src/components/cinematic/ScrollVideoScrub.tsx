@@ -228,8 +228,8 @@ const ScrollVideoScrub: React.FC = () => {
           </motion.div>
           <div className="cv-mid" />
           <motion.div className="cv-right" style={{ opacity: h3 }}>
-            <div className="cv-highlight-box">
-              <div className="cv-coords" style={{ opacity: 0.5, fontSize: "0.75rem", letterSpacing: "0.2em" }}>
+            <div className="cv-footer">
+              <div className="cv-coords" style={{ opacity: 0.5, fontSize: "0.7rem", letterSpacing: "0.2em", textAlign: "right" }}>
                 DESIGNED BY<br />JULIAN KEZY
               </div>
             </div>
