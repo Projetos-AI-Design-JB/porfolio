@@ -1,12 +1,8 @@
 
-import ScrollVideoScrub from "@/components/cinematic/ScrollVideoScrub";
-import SmoothScroll from "@/components/cinematic/SmoothScroll";
-import { Metadata } from "next";
+import dynamic from "next/dynamic";
 
-export const metadata: Metadata = {
-  title: "Julian Kezy | Neural Unfold",
-  description: "A cinematic scroll-driven journey through neural architecture and kinetic design.",
-};
+const ScrollVideoScrub = dynamic(() => import("@/components/cinematic/ScrollVideoScrub"), { ssr: false });
+const SmoothScroll = dynamic(() => import("@/components/cinematic/SmoothScroll"), { ssr: false });
 
 export default function HomePage() {
   return (
