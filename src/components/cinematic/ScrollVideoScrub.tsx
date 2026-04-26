@@ -164,14 +164,16 @@ const ScrollVideoScrub: React.FC = () => {
         <section className="cv-section">
           <motion.div className="cv-left" style={{ opacity: h0 }}>
             <span className="cv-overline">[ SYSTEM_INIT ]</span>
-            <h1 className="cv-title">NEURAL<br />UNFOLD</h1>
+            <h1 className="cv-title">WELCOME</h1>
           </motion.div>
           <div className="cv-mid" />
           <motion.div className="cv-right" style={{ opacity: h0 }}>
-            <div className="cv-tag">[ PHASE_00 ]</div>
+            <div className="cv-tag">[ JULIAN KEZY ]</div>
             <motion.div className="cv-coords" style={{ opacity: 0.6, marginTop: "1rem" }}>
-              LAT: <motion.span>{latValue}</motion.span>° N<br />
-              LONG: <motion.span>{longValue}</motion.span>° W
+              PORTFOLIO<br />
+              <div style={{ fontSize: "0.7rem", opacity: 0.5 }}>
+                LAT: <motion.span>{latValue}</motion.span> / LONG: <motion.span>{longValue}</motion.span>
+              </div>
             </motion.div>
           </motion.div>
         </section>
