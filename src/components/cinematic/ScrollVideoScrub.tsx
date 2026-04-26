@@ -165,6 +165,9 @@ const ScrollVideoScrub: React.FC = () => {
           <motion.div className="cv-left" style={{ opacity: h0 }}>
             <span className="cv-overline">[ SYSTEM_INIT ]</span>
             <h1 className="cv-title">WELCOME</h1>
+            <p className="cv-scroll-hint" style={{ marginTop: "1rem", opacity: 0.5, letterSpacing: "0.1em", fontSize: "0.8rem" }}>
+              [ SCROLL DOWN TO ACCESS PORTFOLIO ]
+            </p>
           </motion.div>
           <div className="cv-mid" />
           <motion.div className="cv-right" style={{ opacity: h0 }}>
